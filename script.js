@@ -438,7 +438,6 @@ function buyClue(type){
 
 }
 
-function endGame() {}
 
 //=====================
 // START GAME
