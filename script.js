@@ -372,7 +372,16 @@ function guess(){
 
     updateStats();
 
-    setTimeout(nextRound,1200);
+    guessButton.textContent = "Next Round";
+
+    guessButton.onclick = function () {
+
+    guessButton.textContent = "Guess";
+    guessButton.onclick = null;
+
+    nextRound();
+
+    };
 
 }
 
