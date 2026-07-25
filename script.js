@@ -94,6 +94,8 @@ const guessInput=document.getElementById("guessInput");
 
 const guessButton=document.getElementById("guessButton");
 
+const nextButton=document.getElementById("nextButton");
+
 guessButton.addEventListener("click",guess);
 
 
@@ -112,6 +114,8 @@ function updateStats(){
     remainingText.textContent=deck.length+(currentNumber!==null?1:0);
 
 }
+
+
 
 
 //=====================
@@ -189,11 +193,18 @@ function nextRound(){
 
     guessInput.value="";
 
+    guessButton.style.display = "inline-block";
+    nextButton.style.display = "none";
+
+    guessInput.disabled = false;
+
     createButtons();
 
     updateStats();
 
 }
+
+
 
 function factorCount(n){
 
@@ -372,16 +383,16 @@ function guess(){
 
     updateStats();
 
-    guessButton.textContent = "Next Round";
+    guessButton.style.display = "none";
+    nextButton.style.display = "inline-block";
 
-    guessButton.onclick = function () {
+    guessInput.disabled = true;
 
-    guessButton.textContent = "Guess";
-    guessButton.onclick = null;
+    document.querySelectorAll(".clueButton").forEach(button=>{
+      button.disabled = true;
+    });
 
     nextRound();
-
-    };
 
 }
 
