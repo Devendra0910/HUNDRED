@@ -97,6 +97,7 @@ const guessButton=document.getElementById("guessButton");
 const nextButton=document.getElementById("nextButton");
 
 guessButton.addEventListener("click",guess);
+nextButton.addEventListener("click",nextRound);
 
 
 //=====================
@@ -392,7 +393,6 @@ function guess(){
       button.disabled = true;
     });
 
-    nextRound();
 
 }
 
