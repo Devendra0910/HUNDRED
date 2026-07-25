@@ -222,3 +222,29 @@ h1{
     }
 
 }
+
+#nextButton{
+
+    width:180px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2b6cff;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#nextButton:hover{
+
+    background:#124fd6;
+
+}
