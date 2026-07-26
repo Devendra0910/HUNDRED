@@ -1,36 +1,23 @@
+const CURRENT_LEVEL = 1;
+const LEVEL = LEVELS[CURRENT_LEVEL];
+
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+
 //=====================
 // GAME STATE
 //=====================
 
-let coins = 100;
+let coins = LEVEL.startingCoins;
 let solved = 0;
 let missed = 0;
 
-const clueCosts = {
-    oddEven:1,
-    prime:1,
-    square:1,
-    digitSum:1,
-    palindrome:1,
-    factors:1,
-    reverse:1,
-    binary:1,
-    largestFactor:1,
-    roman:1
-};
+const clueCosts = {};
 
-const clueNames = {
-    oddEven:"Odd / Even",
-    prime:"Prime?",
-    square:"Perfect Square?",
-    digitSum:"Digit Sum",
-    palindrome:"Palindrome?",
-    factors:"Number of Factors",
-    reverse:"Greater Than Reverse?",
-    binary:"Binary Length",
-    largestFactor:"Largest Proper Factor",
-    roman:"Roman Numeral Length"
-};
+for (const key of LEVEL.clues) {
+    clueCosts[key] = CLUES[key].cost;
+}
+
 
 let deck = [];
 let currentNumber = null;
@@ -42,9 +29,10 @@ let purchasedClues = {};
 // BUILD DECK
 //=====================
 
-for(let i=1;i<=100;i++){
+for (let i = LEVEL.deckStart; i <= LEVEL.deckEnd; i++) {
     deck.push(i);
 }
+
 
 shuffle(deck);
 
@@ -82,11 +70,8 @@ const revealed=document.getElementById("revealedClues");
 
 const coinsText=document.getElementById("coins");
 
-const solvedText=document.getElementById("solved");
 
-const missedText=document.getElementById("missed");
 
-const remainingText=document.getElementById("remaining");
 
 const message=document.getElementById("message");
 
@@ -104,17 +89,21 @@ nextButton.addEventListener("click",nextRound);
 // UPDATE UI
 //=====================
 
+
 function updateStats(){
 
-    coinsText.textContent=coins;
+    coinsText.textContent = coins;
 
-    solvedText.textContent=solved;
 
-    missedText.textContent=missed;
+    const percent = solved / 5 * 100;
 
-    remainingText.textContent=deck.length+(currentNumber!==null?1:0);
+    progressBar.style.width = percent + "%";
+
+    progressText.textContent = `${solved} / 5 Complete`;
+
 
 }
+
 
 
 
@@ -127,16 +116,25 @@ function createButtons(){
 
     clueContainer.innerHTML="";
 
-    for(let key in clueNames){
+    for (const key of LEVEL.clues) {
+
+        //const key = clue.id;
 
         const button=document.createElement("button");
 
+        //console.log("key =", key);
+        //console.log("CLUES[key] =", CLUES[key]);
+
         button.className="clueButton";
 
+        console.log("button:", key, clueCosts[key]);
+
         button.innerHTML=`
-            <span>${clueNames[key]}</span>
+            <span>${CLUES[key].name}</span>
             <span class="cost">${clueCosts[key]} 💰</span>
         `;
+        
+        console.log(key, CLUES[key].cost);
 
         if(purchasedClues[key])
             button.disabled=true;
@@ -149,23 +147,41 @@ function createButtons(){
 
 }
 
-function endGame(){
 
-    clueContainer.innerHTML="";
+function endGame(reason = "completed", answer = null) {
 
-    revealed.innerHTML="";
+    clueContainer.innerHTML = "";
+    revealed.innerHTML = "";
 
-    guessButton.disabled=true;
+    guessButton.disabled = true;
+    guessInput.disabled = true;
+    nextButton.style.display = "none";
 
-    guessInput.disabled=true;
+    if (reason === "wrong") {
 
-    message.innerHTML=`
-        <h2>🎉 Game Over!</h2>
-        <br>
-        Solved: ${solved}<br>
-        Missed: ${missed}<br>
-        Coins Left: ${coins}
-    `;
+      message.innerHTML = `
+          <h2>❌ GAME OVER</h2>
+
+          <p>Your guess was incorrect.</p>
+
+          <p><strong>The correct answer was ${answer}</strong></p>
+
+          <br>
+
+          Solved: ${solved} / 5<br>
+          Coins Left: ${coins}
+          `;
+
+      } else {
+
+        message.innerHTML = `
+            <h2>🎉 LEVEL COMPLETE!</h2>
+            <br>
+            Solved: ${solved} / 5<br>
+            Coins Left: ${coins}
+        `;
+
+    }
 
 }
 
@@ -373,15 +389,28 @@ function guess(){
         message.textContent=
             "✅ Correct! It was "+currentNumber;
 
+       if (solved === 5) {
+
+          updateStats();
+          endGame("completed");
+          return;
+
+        }
+
     }else{
 
-        missed++;
+      missed++;
 
-        message.textContent=
-            "❌ Wrong! It was "+currentNumber;
+      updateStats();
 
-    }
+      message.innerHTML = `❌ Wrong! The correct answer was <b>${currentNumber}</b>.`;
 
+      endGame("wrong", currentNumber);
+
+      return;
+
+   }
+    
     updateStats();
 
     guessButton.style.display = "none";
@@ -393,6 +422,20 @@ function guess(){
       button.disabled = true;
     });
 
+
+}
+
+function canBuyAnyClue() {
+
+    for (const key of LEVEL.clues) {
+
+        if (!purchasedClues[key] && coins >= clueCosts[key]) {
+            return true;
+        }
+
+    }
+
+    return false;
 
 }
 
@@ -420,13 +463,13 @@ function buyClue(type){
     purchasedClues[type] = true;
 
     // Reveal clue
-    const value = getClue(type);
+    const value = CLUES[type].fn(currentNumber);
 
     if(revealed.innerHTML==="No clues purchased.")
         revealed.innerHTML="";
 
     revealed.innerHTML +=
-        `<div><b>${clueNames[type]}</b> : ${value}</div>`;
+    `<div><b>${CLUES[type].name}</b> : ${value}</div>`;
 
     // Refresh buttons to show updated costs
     createButtons();
@@ -436,16 +479,25 @@ function buyClue(type){
 
     let index=0;
 
-    for(let key in clueNames){
+    for (const key of LEVEL.clues) {
 
-        if(purchasedClues[key])
-            buttons[index].disabled=true;
+        if (purchasedClues[key])
+            buttons[index].disabled = true;
 
         index++;
-
     }
 
     updateStats();
+
+    if (!canBuyAnyClue()) {
+
+        document.querySelectorAll(".clueButton").forEach(button => {
+            button.disabled = true;
+        });
+
+        message.textContent = "No more clues can be purchased. Make your guess!";
+
+    }
 
 }
 

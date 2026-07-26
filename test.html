@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Level Tester</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f5f5f5;
+        }
+
+        #output {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Level Uniqueness Tester</h1>
+
+<div id="output"></div>
+
+<script src="clues.js"></script>
+<script src="levels.js"></script>
+
+<script>
+window.LEVEL_NUMBER = 1;
+</script>
+
+<script src="ai/randomAI.js"></script>
+<script src="ai/greedyAI.js"></script>
+<script src="ai/leastUsedRandomAI.js"></script>
+<script src="ai/costAwareGreedyAI.js"></script>
+<script src="ai/simulator.js"></script>
+
+<script src="unique.js"></script>
+
+</body>
+</html>

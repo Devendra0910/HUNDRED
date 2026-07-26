@@ -17,51 +17,27 @@
 
     <h1>HUNDRED</h1>
 
+    <div class="objective">
+        🎯 <strong>Objective:</strong> Solve all <strong>5 Hidden Numbers</strong> before you run out of coins.
+    </div>
+
     <div class="topBar">
 
         <div class="stat">
             💰 Coins
-            <span id="coins">100</span>
+            <span id="coins">40</span>
         </div>
-
-        <div class="stat">
-            ✅ Solved
-            <span id="solved">0</span>
-        </div>
-
-        <div class="stat">
-            ❌ Missed
-            <span id="missed">0</span>
-        </div>
-
-        <div class="stat">
-            🎴 Remaining
-            <span id="remaining">100</span>
-        </div>
-
     </div>
 
-    <div class="mainLayout">
-
-      <div class="section">
-
-        <h2>Buy Clues</h2>
-
-        <div id="clueContainer"></div>
-
-      </div>
-
-      <div class="section">
-
-        <h2>Revealed Clues</h2>
-
-        <div id="revealedClues">
-            No clues purchased.
-        </div>
-
-      </div>
-
+    <div class="progressContainer">
+        <div id="progressBar" class="progressBar"></div>
     </div>
+
+    <div id="progressText" class="progressText">
+        0 / 5 Complete
+    </div>
+
+    <!-- Guess Area moved here -->
 
     <div class="guessArea">
 
@@ -70,24 +46,46 @@
             id="guessInput"
             min="1"
             max="100"
-            placeholder="Guess 1-100">
+            placeholder="Guess the hidden number (1–100)">
 
         <button id="guessButton">
-
             Guess
-
         </button>
+
         <button id="nextButton" style="display:none;">
-            Next Round
+            Next Question →
         </button>
 
     </div>
 
-
     <div id="message"></div>
+
+    <div class="mainLayout">
+
+        <div class="section">
+
+            <h2>Buy Clues</h2>
+
+            <div id="clueContainer"></div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Revealed Clues</h2>
+
+            <div id="revealedClues">
+                No clues purchased.
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
+<script src="clues.js"></script>
+<script src="levels.js"></script>
 <script src="script.js"></script>
 
 </body>
