@@ -298,3 +298,56 @@ h1{
 
 }
 
+.levelGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.levelButton {
+    width: 260px;
+    padding: 18px;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    background: linear-gradient(180deg, #FFD54F, #F4B400);
+    color: #222;
+
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+
+    transition: transform 0.15s ease,
+                box-shadow 0.15s ease;
+}
+
+.levelButton:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+}
+
+.levelButton.locked {
+    background: #bdbdbd;
+    color: white;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.homeScreen h2 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 34px;
+}
+
+.menuTitle {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 28px;
+}

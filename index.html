@@ -17,70 +17,78 @@
 
     <h1>HUNDRED</h1>
 
-    <div class="objective">
-        🎯 <strong>Objective:</strong> Solve all <strong>5 Hidden Numbers</strong> before you run out of coins.
-    </div>
-
-    <div class="topBar">
-
-        <div class="stat">
-            💰 Coins
-            <span id="coins">40</span>
-        </div>
-    </div>
-
-    <div class="progressContainer">
-        <div id="progressBar" class="progressBar"></div>
-    </div>
-
-    <div id="progressText" class="progressText">
-        0 / 5 Complete
-    </div>
-
-    <!-- Guess Area moved here -->
-
-    <div class="guessArea">
-
-        <input
-            type="number"
-            id="guessInput"
-            min="1"
-            max="100"
-            placeholder="Guess the hidden number (1–100)">
-
-        <button id="guessButton">
-            Guess
-        </button>
-
-        <button id="nextButton" style="display:none;">
-            Next Question →
-        </button>
+    <div id="homeScreen">
+    
+      <h2 class="menuTitle">Select Level</h2>
 
     </div>
 
-    <div id="message"></div>
+    <div id="gameScreen">
+      <div class="objective">
+          🎯 <strong>Objective:</strong> Solve all <strong>5 Hidden Numbers</strong> before you run out of coins.
+      </div>
 
-    <div class="mainLayout">
+      <div class="topBar">
 
-        <div class="section">
+          <div class="stat">
+              💰 Coins
+              <span id="coins">40</span>
+          </div>
+      </div>
 
-            <h2>Buy Clues</h2>
+      <div class="progressContainer">
+          <div id="progressBar" class="progressBar"></div>
+      </div>
 
-            <div id="clueContainer"></div>
+      <div id="progressText" class="progressText">
+          0 / 5 Complete
+      </div>
 
-        </div>
+      <!-- Guess Area moved here -->
 
-        <div class="section">
+      <div class="guessArea">
 
-            <h2>Revealed Clues</h2>
+          <input
+              type="number"
+              id="guessInput"
+              min="1"
+              max="100"
+              placeholder="Guess the hidden number (1–100)">
 
-            <div id="revealedClues">
-                No clues purchased.
-            </div>
+          <button id="guessButton">
+              Guess
+          </button>
 
-        </div>
+          <button id="nextButton" style="display:none;">
+              Next Question →
+          </button>
 
-    </div>
+      </div>
+
+      <div id="message"></div>
+
+      <div class="mainLayout">
+
+          <div class="section">
+
+              <h2>Buy Clues</h2>
+
+              <div id="clueContainer"></div>
+
+          </div>
+
+          <div class="section">
+
+              <h2>Revealed Clues</h2>
+
+              <div id="revealedClues">
+                  No clues purchased.
+              </div>
+
+          </div>
+
+      </div>
+  </div>
 
 </div>
 
