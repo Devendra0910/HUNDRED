@@ -152,23 +152,48 @@ function showHome() {
     homeScreen.style.display = "block";
 
     homeScreen.innerHTML = `
-        <h2>Select Level</h2>
+    <div class="menu">
+
+        <h1 class="gameTitle">HUNDRED</h1>
+
+        <p class="tagline">
+            Discover • Deduce • Solve
+        </p>
 
         <div class="levelGrid">
 
-            <button id="level1Button" class="levelButton">
-              🌱 Level 1
-            </button>
+            ...
 
-            <button class="levelButton locked" disabled>
-                🔒 Level 2
-            </button>
+        </div>
 
-            <button class="levelButton locked" disabled>
-                🔒 Level 3
-            </button>
+    </div>
+    `;
 
-          </div>
+    homeScreen.innerHTML = `
+      
+         <div class="menu">
+             <h1 class="gameTitle">HUNDRED</h1>
+
+              <p class="tagline">
+                 Deduce • Discover • Master
+              </p>
+
+              <div class="levelGrid">
+
+                <button id="level1Button" class="levelButton">
+                  🌱 Level 1
+                </button>
+
+                <button class="levelButton locked" disabled>
+                    🔒 Level 2
+                </button>
+
+                <button class="levelButton locked" disabled>
+                    🔒 Level 3
+                </button>
+
+            </div>
+          </div> 
       `;
 
 

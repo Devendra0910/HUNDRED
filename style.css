@@ -339,6 +339,22 @@ h1{
     box-shadow: none;
 }
 
+
+#homeScreen {
+
+    min-height: 100vh;
+
+    background-image: url("assets/backgrounds/menu.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .homeScreen h2 {
     text-align: center;
     margin-top: 30px;
@@ -350,4 +366,61 @@ h1{
     text-align: center;
     font-size: 34px;
     margin-bottom: 28px;
+}
+
+.gameTitle{
+    font-size:72px;
+    font-weight:900;
+    color:white;
+
+    text-shadow:
+        0 4px 12px rgba(0,0,0,.4);
+
+    margin-bottom:8px;
+}
+
+.tagline{
+
+    font-size:22px;
+    font-weight:600;
+
+    color:#222;
+
+    text-align:center;
+
+    margin:60px auto 50px auto;
+
+}
+
+#gameScreen {
+
+    min-height: 100vh;
+
+    background-image: url("assets/backgrounds/gameBackground.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 30px;
+}
+
+.objective{
+
+    font-size:22px;
+
+    line-height:1.6;
+
+    padding:18px 24px;
+
+    margin:20px 0 30px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.75);
+
+    border:2px solid #ffd54f;
+
+    text-align:center;
+
 }
