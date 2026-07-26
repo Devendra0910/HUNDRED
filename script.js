@@ -170,6 +170,11 @@ function endGame(reason = "completed", answer = null) {
 
           Solved: ${solved} / 5<br>
           Coins Left: ${coins}
+          
+           <br><br>
+
+           <button id="restartButton">🔄 Play Again</button>
+
           `;
 
       } else {
@@ -179,9 +184,18 @@ function endGame(reason = "completed", answer = null) {
             <br>
             Solved: ${solved} / 5<br>
             Coins Left: ${coins}
-        `;
+
+             <br><br>
+
+            <button id="restartButton" class="restartButton">
+              Play Again
+            </button>   
+            `;
+
 
     }
+    
+    document.getElementById("restartButton").addEventListener("click", () => {location.reload()});
 
 }
 

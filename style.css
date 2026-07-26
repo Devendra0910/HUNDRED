@@ -271,3 +271,30 @@ h1{
     margin-bottom:20px;
     color:#333;
 }
+
+#restartButton{
+
+    width:180px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2b6cff;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#restartButton:hover{
+
+    background:#124fd6;
+
+}
+
