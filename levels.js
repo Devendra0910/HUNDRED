@@ -341,6 +341,72 @@ const LEVELS = {
 
     ]
 
+  },
+  6: {
+
+    id: 6,
+
+    name: "English",
+
+    description: "Think using the English spelling of numbers.",
+
+    difficulty: 6,
+
+    category: "English",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "library",
+
+    background: "library",
+
+    music: "library",
+
+    unlockRequirement: {
+        level: 5
+    },
+
+    clues: [
+
+        "englishStartingLetter",
+
+        "englishLetterCount",
+
+        "englishVowelCount",
+
+        "containsLetterO",
+
+        "containsTY",
+
+        "englishLastLetter",
+
+        "greaterThan50",
+
+        "oddEven",
+
+        "divisibleBy3",
+
+        "largestDigit"
+
+    ]
+
   }
 
 };

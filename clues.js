@@ -1,3 +1,24 @@
+function toEnglish(n) {
+
+    const words = {
+        0:"zero",1:"one",2:"two",3:"three",4:"four",5:"five",
+        6:"six",7:"seven",8:"eight",9:"nine",10:"ten",
+        11:"eleven",12:"twelve",13:"thirteen",14:"fourteen",
+        15:"fifteen",16:"sixteen",17:"seventeen",18:"eighteen",
+        19:"nineteen",20:"twenty",30:"thirty",40:"forty",
+        50:"fifty",60:"sixty",70:"seventy",80:"eighty",
+        90:"ninety",100:"hundred"
+    };
+
+    if (words[n]) return words[n];
+
+    const tens = Math.floor(n / 10) * 10;
+    const ones = n % 10;
+
+    return words[tens] + "-" + words[ones];
+}
+
+
 const CLUES = {
 
     oddEven: {
@@ -903,6 +924,77 @@ reverseGreaterThan75: {
         );
 
         return rev > 75 ? "Yes" : "No";
+    }
+},
+englishStartingLetter: {
+    name: "Starting Letter",
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        const s = toEnglish(n);
+
+        return s.replace(/[\s-]/g, "")[0].toUpperCase();
+    }
+},
+
+englishLastLetter: {
+    name: "Last Letter",
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        const s = toEnglish(n).replace(/[\s-]/g, "");
+
+        return s[s.length - 1].toUpperCase();
+    }
+},
+
+englishVowelCount: {
+    name: "Number of Vowels",
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        const s = toEnglish(n).replace(/[\s-]/g, "").toLowerCase();
+
+        return [...s].filter(c => "aeiou".includes(c)).length;
+    }
+},
+
+containsLetterO: {
+    name: 'Contains Letter "O"?',
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        return toEnglish(n).toLowerCase().includes("o")
+            ? "Yes"
+            : "No";
+    }
+},
+
+containsTY: {
+    name: 'Contains "TY"?',
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        return toEnglish(n).toLowerCase().includes("ty")
+            ? "Yes"
+            : "No";
+    }
+},
+
+englishWordCount: {
+    name: "Number of Words",
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        return toEnglish(n)
+            .split(/[\s-]+/)
+            .length;
     }
 }
 
