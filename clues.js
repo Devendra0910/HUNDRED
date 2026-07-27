@@ -435,8 +435,8 @@ const CLUES = {
         }
     },
 
-    lastDigit: {
-        name: "Last Digit",
+    unitsDigit: {
+        name: "Units Digit",
         cost: 1,
         category: "purple",
         fn(n) {
@@ -717,7 +717,23 @@ const CLUES = {
       fn(n) {
         return n > 75 ? "Yes" : "No";
       }
-    }
+    },
+    greaterThan30: {
+      name: "Greater than 30?",
+      cost: 1,
+      category: "blue",
+      fn(n) {
+        return n > 30 ? "Yes" : "No";
+      }
+    },
+    greaterThan70: {
+      name: "Greater than 70?",
+      cost: 1,
+      category: "blue",
+      fn(n) {
+        return n > 70 ? "Yes" : "No";
+      }
+   }
 
 };
 

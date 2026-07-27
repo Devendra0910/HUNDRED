@@ -79,66 +79,135 @@ const LEVELS = {
     },
 
 
-
-
-
-
     2: {
 
-        id: 2,
+    id: 2,
 
-        name: "Divisibility",
+    name: "Number Patterns",
 
-        description: "Master divisibility rules.",
+    description: "Discover new ways to identify numbers.",
 
-        difficulty: 2,
+    difficulty: 2,
 
-        category: "Arithmetic",
+    category: "Patterns",
 
-        deckStart: 1,
-        deckEnd: 100,
+    deckStart: 1,
+    deckEnd: 100,
 
-        questions: 5,
+    questions: 5,
 
-        startingCoins: 30,
+    startingCoins: 40,
 
-        clueCostMultiplier: 1,
-        clueCostIncrement: 1,
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
 
-        allowRepeatedNumbers: false,
+    allowRepeatedNumbers: false,
 
-        coinsPerCorrect: 0,
-        coinsPerWrong: 0,
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
 
-        bonusPerUnusedCoin: 0,
+    bonusPerUnusedCoin: 0,
 
-        scorePerCorrect: 1,
+    scorePerCorrect: 1,
 
-        theme: "desert",
+    theme: "desert",
 
-        background: "desert",
+    background: "desert",
 
-        music: "desert",
+    music: "desert",
 
-        unlockRequirement: {
-            level: 1
-        },
+    unlockRequirement: {
+        level: 1
+    },
 
-        clues: [
+    clues: [
 
-            "oddEven",
+        "unitsDigit",
 
-            "divisibleBy3",
-            "divisibleBy4",
-            "divisibleBy5",
-            "divisibleBy6",
-            "divisibleBy7",
-            "divisibleBy8",
-            "divisibleBy9",
-            "divisibleBy10",
-            "divisibleBy11"
+        "oddEven",
 
-        ]
+        "digitDifference",
+
+        "prime",
+
+        "perfectCube",
+
+        "numberOfDigits",
+
+        "greaterThan30",
+
+        "greaterThan70",
+
+        "greaterThanReverse",
+
+        "perfectSquare"
+
+    ]
+
+    },
+
+    3: {
+
+    id: 3,
+
+    name: "Factors",
+
+    description: "Use factorization to identify numbers.",
+
+    difficulty: 3,
+
+    category: "Factors",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "mountain",
+
+    background: "mountain",
+
+    music: "mountain",
+
+    unlockRequirement: {
+        level: 2
+    },
+
+    clues: [
+
+        "divisibleBy4",
+        "divisibleBy6",
+        "divisibleBy8",
+
+        "numberOfFactors",
+
+        "smallestPrimeFactor",
+
+        "largestPrimeFactor",
+
+        "distinctPrimeFactors",
+
+        "powerOfTwo",
+
+        "squareFree",
+
+        "prime"
+
+    ]
 
     }
 

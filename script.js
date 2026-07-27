@@ -1,5 +1,5 @@
-const CURRENT_LEVEL = 1;
-const LEVEL = LEVELS[CURRENT_LEVEL];
+let CURRENT_LEVEL = 1;
+let LEVEL = LEVELS[CURRENT_LEVEL];
 
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
@@ -152,24 +152,6 @@ function showHome() {
     homeScreen.style.display = "block";
 
     homeScreen.innerHTML = `
-    <div class="menu">
-
-        <h1 class="gameTitle">HUNDRED</h1>
-
-        <p class="tagline">
-            Discover • Deduce • Solve
-        </p>
-
-        <div class="levelGrid">
-
-            ...
-
-        </div>
-
-    </div>
-    `;
-
-    homeScreen.innerHTML = `
       
          <div class="menu">
              <h1 class="gameTitle">HUNDRED</h1>
@@ -180,38 +162,53 @@ function showHome() {
 
               <div class="levelGrid">
 
-                <button id="level1Button" class="levelButton">
-                  🌱 Level 1
-                </button>
-
-                <button class="levelButton locked" disabled>
-                    🔒 Level 2
-                </button>
-
-                <button class="levelButton locked" disabled>
-                    🔒 Level 3
-                </button>
+                <button class="levelButton" data-level="1">🌱 Level 1 (Basics) </button>
+                <button class="levelButton" data-level="2">🔢 Level 2 (Patterns)</button>
+                <button class="levelButton" data-level="3">💠 Level 3 (Factors) </button>
 
             </div>
           </div> 
       `;
 
 
-   document
-    .getElementById("level1Button")
-    .addEventListener("click", startLevel1);
+     document.querySelectorAll(".levelButton").forEach(button => {
+
+    button.addEventListener("click", () => {
+        startLevel(Number(button.dataset.level));
+    });
+
+});
+
+
 
 }
 
-function startLevel1() {
+function startLevel(levelNumber) {
+
+    CURRENT_LEVEL = levelNumber;
+    LEVEL = LEVELS[levelNumber];
+
+    // Reset state
+    coins = LEVEL.startingCoins;
+    solved = 0;
+
+    deck = [];
+    for (let i = LEVEL.deckStart; i <= LEVEL.deckEnd; i++) {
+        deck.push(i);
+    }
+    shuffle(deck);
+
+    for (const key in clueCosts) delete clueCosts[key];
+    for (const key of LEVEL.clues) {
+        clueCosts[key] = CLUES[key].cost;
+    }
 
     homeScreen.style.display = "none";
-
     gameScreen.style.display = "block";
 
     nextRound();
-
 }
+
 
 //=====================
 // NEXT ROUND
