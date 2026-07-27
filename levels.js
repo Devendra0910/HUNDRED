@@ -209,6 +209,138 @@ const LEVELS = {
 
     ]
 
-    }
+    },
+   4: {
+
+    id: 4,
+
+    name: "Attributes",
+
+    description: "Use a variety of number attributes to identify the hidden number.",
+
+    difficulty: 4,
+
+    category: "Attributes",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "snow",
+
+    background: "snow",
+
+    music: "snow",
+
+    unlockRequirement: {
+        level: 3
+    },
+
+    clues: [
+
+        "calendarDate",
+
+        "divisibleBy3",
+
+        "minuteOfHour",
+
+        "largestDigit",
+
+        "distinctPrimeFactors",
+
+        "englishLetterCount",
+
+        "greaterThanReverse",
+
+        "modulo3",
+
+        "prime",
+
+        "oddEven"
+
+    ]
+
+    },
+  5: {
+
+    id: 5,
+
+    name: "Reverse",
+
+    description: "Think backwards. Use clues based on the reversed number.",
+
+    difficulty: 5,
+
+    category: "Reverse",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "volcano",
+
+    background: "volcano",
+
+    music: "volcano",
+
+    unlockRequirement: {
+        level: 4
+    },
+
+    clues: [
+
+        "reverseGreaterThan50",
+
+        "greaterThanReverse",
+
+        "reverseEven",
+
+        "reverseGreaterThan25",
+
+        "reverseDivisibleBy3",
+
+        "reverseDifference",
+
+        "reverseGreaterThan75",
+
+        "greaterThan50",
+
+        "oddEven",
+
+        "reverseDigitSum"
+
+    ]
+
+  }
 
 };

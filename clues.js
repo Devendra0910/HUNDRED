@@ -733,7 +733,178 @@ const CLUES = {
       fn(n) {
         return n > 70 ? "Yes" : "No";
       }
-   }
+   },
+   calendarDate: {
+    name: "Can be a Calendar Date?",
+    cost: 1,
+    category: "red",
+    fn(n) {
+        return n >= 1 && n <= 31 ? "Yes" : "No";
+    }
+},
+
+wallClock: {
+    name: "Can be on a Wall Clock?",
+    cost: 1,
+    category: "red",
+    fn(n) {
+        return n >= 1 && n <= 12 ? "Yes" : "No";
+    }
+},
+
+minuteOfHour: {
+    name: "Can be a Minute of the Hour?",
+    cost: 1,
+    category: "red",
+    fn(n) {
+        return n >= 0 && n <= 59 ? "Yes" : "No";
+    }
+},
+
+englishLetterCount: {
+    name: "Letters in English Name",
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        const words = {
+            0:"zero",1:"one",2:"two",3:"three",4:"four",5:"five",
+            6:"six",7:"seven",8:"eight",9:"nine",10:"ten",
+            11:"eleven",12:"twelve",13:"thirteen",14:"fourteen",
+            15:"fifteen",16:"sixteen",17:"seventeen",18:"eighteen",
+            19:"nineteen",20:"twenty",30:"thirty",40:"forty",
+            50:"fifty",60:"sixty",70:"seventy",80:"eighty",
+            90:"ninety",100:"one hundred"
+        };
+
+        function toWords(x) {
+
+            if (words[x]) return words[x];
+
+            const tens = Math.floor(x / 10) * 10;
+            const ones = x % 10;
+
+            return words[tens] + "-" + words[ones];
+        }
+
+        return toWords(n).replace(/[\s-]/g, "").length;
+    }
+},
+
+reverseGreaterThan50: {
+    name: "Reverse Greater than 50?",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return rev > 50 ? "Yes" : "No";
+    }
+},
+
+reverseEven: {
+    name: "Reverse Is Even?",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return rev % 2 === 0 ? "Yes" : "No";
+    }
+},
+
+reverseDivisibleBy3: {
+    name: "Reverse Divisible by 3?",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return rev % 3 === 0 ? "Yes" : "No";
+    }
+},
+
+reverseDifference: {
+    name: "Difference with Reverse",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return Math.abs(n - rev);
+    }
+},
+
+reverseSquare: {
+    name: "Reverse Is Perfect Square?",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return Number.isInteger(Math.sqrt(rev)) ? "Yes" : "No";
+    }
+},
+
+reverseDigitSum: {
+    name: "Reverse Digit Sum",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return rev
+            .toString()
+            .split("")
+            .reduce((a, b) => a + Number(b), 0);
+    }
+},
+
+reverseGreaterThan25: {
+    name: "Reverse Greater than 25?",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return rev > 25 ? "Yes" : "No";
+    }
+},
+
+reverseGreaterThan75: {
+    name: "Reverse Greater than 75?",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+
+        const rev = Number(
+            n.toString().split("").reverse().join("")
+        );
+
+        return rev > 75 ? "Yes" : "No";
+    }
+}
 
 };
 

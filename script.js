@@ -165,7 +165,8 @@ function showHome() {
                 <button class="levelButton" data-level="1">🌱 Level 1 (Basics) </button>
                 <button class="levelButton" data-level="2">🔢 Level 2 (Patterns)</button>
                 <button class="levelButton" data-level="3">💠 Level 3 (Factors) </button>
-
+                <button class="levelButton" data-level="4">🧬 Level 4 (Traits) </button>
+                <button class="levelButton" data-level="5">🔄 Level 5 (Reverse)</button>
             </div>
           </div> 
       `;
