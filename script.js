@@ -104,8 +104,7 @@ function createButtons(){
 
 }
 
-
-function endGame(reason = "completed", answer = null) {
+function endGame(reason = "completed", answer = null, userGuess = null) {
 
     clueContainer.innerHTML = "";
     revealed.innerHTML = "";
@@ -113,19 +112,89 @@ function endGame(reason = "completed", answer = null) {
     guessInput.disabled = true;
     nextButton.style.display = "none";
 
+    let clueHistory = "";
+
+    for (const key of LEVEL.clues) {
+
+      if (!purchasedClues[key]) continue;
+
+      clueHistory += `
+        <div class="clueResult">
+
+          <span class="clueName">
+            ${CLUES[key].name}
+          </span>
+
+          <span class="clueValue">
+            ${CLUES[key].fn(answer)}
+          </span>
+
+        </div>
+      `;
+
+    }
+
     if (reason === "wrong") {
 
       message.innerHTML = `
-          <h2>❌ GAME OVER</h2>
-          <p>Your guess was incorrect.</p>
-          <p><strong>The correct answer was ${answer}</strong></p>
-          <br>
-          Solved: ${solved} / ${LEVEL.questions} <br>
-          Coins Left: ${coins}
+          <div class="resultCard">
+
+          <h2 class="resultTitle">❌ Round Lost</h2>
+
+          
+
+          <div class="answerCompare">
+
+            <div class="answerBox">
+              <div class="answerNumber">${userGuess}</div>
+              <div class="answerLabel">Your Guess</div>
+            </div>
+
+            <div class="answerArrow">➡</div>
+
+              <div class="answerBox correct">
+              <div class="answerNumber">${answer}</div>
+              <div class="answerLabel">Correct</div>
+            </div>
+
+          </div>
+
+
+          <hr>
+
+          <h3>Clues Purchased</h3>
+
+          ${clueHistory || `
+            <div class="noClues">
+            🔍 No clues purchased
+            </div>
+            `}
+
+          <hr>
+
+          <div class="resultStats">
+
+            <div class="statCard">
+              <div class="statValue">${solved}/${LEVEL.questions}</div>
+              <div class="statLabel">Solved</div>
+            </div>
+
+            <div class="statCard">
+              <div class="statValue">${coins}</div>
+              <div class="statLabel">Coins Left</div>
+            </div>
+
+          </div>
+
           <br><br>
-          <button id="restartButton">🔄 Play Again</button>
-          `;
-      } else {
+
+          <button id="restartButton">
+              🔄 Play Again
+          </button>
+          </div>
+      `;
+    }
+     else {
         message.innerHTML = `
             <h2>🎉 LEVEL COMPLETE!</h2>
             <br>
@@ -168,6 +237,7 @@ function showHome() {
                 <button class="levelButton" data-level="4">🧬 Level 4 (Traits) </button>
                 <button class="levelButton" data-level="5">🔄 Level 5 (Reverse)</button>
                 <button class="levelButton" data-level="6">📚 Level 6 (English)</button>
+                <button class="levelButton" data-level="7">🏛️ Level 7 (Roman)</button>
             </div>
           </div> 
       `;
@@ -263,8 +333,9 @@ function guess(){
     }else{
 
       updateStats();
-      message.innerHTML = `❌ Wrong! The correct answer was <b>${currentNumber}</b>.`;
-      endGame("wrong", currentNumber);
+      //message.innerHTML = `❌ Wrong! The correct answer was <b>${currentNumber}</b>.`;
+      endGame("wrong", currentNumber, value);
+      //endGame("wrong", currentNumber);
       return;
    }
     

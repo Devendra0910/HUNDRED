@@ -1020,6 +1020,106 @@ englishWordCount: {
             .split(/[\s-]+/)
             .length;
     }
+},
+
+romanContainsI: {
+    name: "Roman Contains I?",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return CLUES.toRoman.fn(n).includes("I") ? "Yes" : "No";
+    }
+},
+
+romanContainsL: {
+    name: "Roman Contains L?",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return CLUES.toRoman.fn(n).includes("L") ? "Yes" : "No";
+    }
+},
+
+romanContainsC: {
+    name: "Roman Contains C?",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return CLUES.toRoman.fn(n).includes("C") ? "Yes" : "No";
+    }
+},
+
+romanStartsWith: {
+    name: "Roman Starts With",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return CLUES.toRoman.fn(n)[0];
+    }
+},
+
+romanEndsWith: {
+    name: "Roman Ends With",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        const s = CLUES.toRoman.fn(n);
+        return s[s.length - 1];
+    }
+},
+
+romanDistinctLetters: {
+    name: "Distinct Roman Letters",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return new Set(CLUES.toRoman.fn(n)).size;
+    }
+},
+
+romanNumberOfI: {
+    name: "Number of I's",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return [...CLUES.toRoman.fn(n)].filter(c => c === "I").length;
+    }
+},
+
+romanNumberOfV: {
+    name: "Number of V's",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return [...CLUES.toRoman.fn(n)].filter(c => c === "V").length;
+    }
+},
+
+romanNumberOfX: {
+    name: "Number of X's",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return [...CLUES.toRoman.fn(n)].filter(c => c === "X").length;
+    }
+},
+
+romanNumberOfL: {
+    name: "Number of L's",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return [...CLUES.toRoman.fn(n)].filter(c => c === "L").length;
+    }
+},
+
+romanNumberOfC: {
+    name: "Number of C's",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return [...CLUES.toRoman.fn(n)].filter(c => c === "C").length;
+    }
 }
 
 };

@@ -407,6 +407,73 @@ const LEVELS = {
 
     ]
 
-  }
+  },
+
+  7: {
+
+    id: 7,
+
+    name: "Roman",
+
+    description: "Think using Roman numerals.",
+
+    difficulty: 7,
+
+    category: "Roman",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "temple",
+
+    background: "temple",
+
+    music: "temple",
+
+    unlockRequirement: {
+        level: 6
+    },
+
+    clues: [
+
+        "romanLength",
+
+        "romanStartsWith",
+
+        "romanEndsWith",
+
+        "romanContainsI",
+
+        "romanContainsV",
+
+        "romanContainsX",
+
+        "romanDistinctLetters",
+
+        "romanNumberOfI",
+
+        "digitSum",
+
+        "greaterThan50"
+
+    ]
+
+}
 
 };
