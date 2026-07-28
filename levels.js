@@ -124,13 +124,13 @@ const LEVELS = {
 
         "unitsDigit",
 
-        "oddEven",
+        "divisibleBy11",
 
         "digitDifference",
 
         "prime",
 
-        "perfectCube",
+        "greaterThan50",
 
         "numberOfDigits",
 
@@ -138,7 +138,7 @@ const LEVELS = {
 
         "greaterThan70",
 
-        "greaterThanReverse",
+        "divisibleBy6",
 
         "perfectSquare"
 
@@ -203,7 +203,7 @@ const LEVELS = {
 
         "powerOfTwo",
 
-        "squareFree",
+        "divisibleBy9",
 
         "prime"
 
@@ -327,7 +327,7 @@ const LEVELS = {
 
         "reverseGreaterThan25",
 
-        "reverseDivisibleBy3",
+        "divisibleBy4",
 
         "reverseDifference",
 
@@ -397,9 +397,9 @@ const LEVELS = {
 
         "englishLastLetter",
 
-        "greaterThan50",
+        "greaterThan30",
 
-        "oddEven",
+        "containsLetterS",
 
         "divisibleBy3",
 

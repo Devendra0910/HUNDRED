@@ -974,6 +974,30 @@ containsLetterO: {
     }
 },
 
+containsLetterS: {
+      name: 'Contains Letter "S"?',
+      cost: 1,
+      category: "red",
+      fn(n) {
+              
+          return toEnglish(n).toLowerCase().includes("s")
+             ? "Yes"
+             : "No";
+      }
+},
+
+containsLetterN: {
+        name: 'Contains Letter "N"?',
+        cost: 1,
+        category: "red", 
+        fn(n) {               
+             return toEnglish(n).toLowerCase().includes("n")
+              ? "Yes"
+              : "No";
+          } 
+},
+
+
 containsTY: {
     name: 'Contains "TY"?',
     cost: 1,
