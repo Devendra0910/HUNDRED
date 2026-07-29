@@ -1,0 +1,89 @@
+.levelButton {
+    width: 260px;
+    padding: 18px;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    background: linear-gradient(180deg, #FFD54F, #F4B400);
+    color: #222;
+
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+
+    transition: transform 0.15s ease,
+                box-shadow 0.15s ease;
+
+    opacity:0;
+
+    animation:levelAppear .45s ease forwards;
+}
+
+.levelButton:hover:not(:disabled) {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+}
+
+.levelButton.locked {
+    background: #bdbdbd;
+    color: white;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#homeScreen {
+
+    min-height: 100vh;
+
+    background-image: url("../assets/backgrounds/menu.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeScreen h2 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 34px;
+}
+
+.menuTitle {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 28px;
+}
+
+.gameTitle{
+    font-size:72px;
+    font-weight:900;
+    color:white;
+
+    text-shadow:
+        0 4px 12px rgba(0,0,0,.4);
+
+    margin-bottom:8px;
+}
+
+.tagline{
+
+    font-size:22px;
+    font-weight:600;
+
+    color:#222;
+
+    text-align:center;
+
+    margin:60px auto 50px auto;
+
+}
+
