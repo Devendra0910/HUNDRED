@@ -59,7 +59,7 @@ function shuffle(array){
 //=====================
 
 const clueContainer=document.getElementById("clueContainer");
-const revealed=document.getElementById("revealedClues");
+//const revealed=document.getElementById("revealedClues");
 const coinsText=document.getElementById("coins");
 const message=document.getElementById("message");
 const guessInput=document.getElementById("guessInput");
@@ -92,12 +92,18 @@ function createButtons(){
     for (const key of LEVEL.clues) {
         const button=document.createElement("button");
         button.className="clueButton";
-        button.innerHTML=`
+        /*button.innerHTML=`
             <span>${CLUES[key].name}</span>
             <span class="cost">${clueCosts[key]} 💰</span>
-        `;
-        if(purchasedClues[key])
+        `;*/
+         const value = purchasedClues[key]  ? CLUES[key].fn(currentNumber) : `${clueCosts[key]} 💰`;
+         button.innerHTML = `<div class="clueTitle"> ${CLUES[key].name} </div>
+                            <div class="${purchasedClues[key] ? "clueAnswer" : "cost"}"> ${value}</div>`;
+
+        if(purchasedClues[key]){
             button.disabled=true;
+            button.classList.add("revealed");
+        }
         button.addEventListener("click",()=>buyClue(key));
         clueContainer.appendChild(button);
     }
@@ -293,7 +299,7 @@ function nextRound(){
     }
     currentNumber=deck.shift();
     purchasedClues={};
-    revealed.innerHTML="No clues purchased.";
+    //revealed.innerHTML="No clues purchased.";
     message.textContent="";
     guessInput.value="";
     guessButton.style.display = "inline-block";
@@ -386,14 +392,14 @@ function buyClue(type){
     // Mark purchased
     purchasedClues[type] = true;
 
-    // Reveal clue
+    /*// Reveal clue
     const value = CLUES[type].fn(currentNumber);
 
     if(revealed.innerHTML==="No clues purchased.")
         revealed.innerHTML="";
 
     revealed.innerHTML +=
-    `<div><b>${CLUES[type].name}</b> : ${value}</div>`;
+    `<div><b>${CLUES[type].name}</b> : ${value}</div>`;*/
 
     // Refresh buttons to show updated costs
     createButtons();

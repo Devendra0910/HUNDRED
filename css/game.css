@@ -1,0 +1,199 @@
+#gameScreen {
+
+    min-height: 100vh;
+
+    background-image: url("../assets/backgrounds/gameBackground.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 30px;
+}
+
+.objective{
+
+    font-size:22px;
+
+    line-height:1.6;
+
+    padding:18px 24px;
+
+    margin:20px 0 30px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.75);
+
+    border:2px solid #ffd54f;
+
+    text-align:center;
+
+}
+
+.topBar{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+
+}
+
+.stat{
+
+    background:white;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+}
+
+.stat span{
+
+    display:block;
+    margin-top:8px;
+    font-size:30px;
+    font-weight:bold;
+
+}
+
+.progressContainer{
+    width:100%;
+    height:18px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin:15px 0 8px;
+}
+
+.progressBar{
+    width:0%;
+    height:100%;
+    background:#4CAF50;
+    transition:width .35s ease;
+}
+
+.progressText{
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:20px;
+    color:#333;
+}
+
+.guessArea{
+
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+
+}
+
+#guessInput{
+
+    flex:1;
+
+    padding:15px;
+
+    font-size:24px;
+
+    border:1px solid #bbb;
+
+    border-radius:8px;
+
+}
+
+#guessButton{
+
+    width:180px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#27ae60;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+#guessButton:hover{
+
+    background:#1d8b4c;
+
+}
+
+#message{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    min-height:40px;
+
+}
+
+#nextButton{
+
+    width:180px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2b6cff;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#nextButton:hover{
+
+    background:#124fd6;
+
+}
+
+.mainLayout{
+
+    display:grid;
+    grid-template-columns:1fr;
+    margin-bottom:20px;
+
+}
+
+.section{
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.section h2{
+
+    margin-bottom:18px;
+
+
