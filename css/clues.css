@@ -1,0 +1,153 @@
+/* ==========================
+   CLUE GRID
+========================== */
+
+#clueContainer{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+
+}
+
+/* ==========================
+   CLUE BUTTON
+========================== */
+
+.clueButton{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    height:95px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2b6cff;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    font-size:15px;
+
+    padding:12px;
+
+}
+
+
+.clueButton:hover{
+
+    background:#124fd6;
+
+}
+
+.clueButton:disabled{
+
+    background:#888;
+    opacity:1;
+    cursor:not-allowed;
+
+}
+
+/* ==========================
+   COST
+========================== */
+
+
+.cost{
+
+    margin-top:6px;
+    font-size:17px;
+    font-weight:bold;
+
+}
+
+/* ==========================
+   ANSWER
+========================== */
+
+
+.clueAnswer{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    align-self:center;
+
+    min-width:80px;
+
+    min-height:40px;
+
+    padding:6px 18px;
+
+    margin-top:12px;
+
+    border-radius:999px;
+
+    background:linear-gradient(135deg,#FFD54F,#FFB300);
+
+    color:#222;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    box-shadow:0 4px 12px rgba(255,193,7,.35);
+
+    text-transform:uppercase;
+
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+.clueTitle{
+
+    font-size:17px;
+
+    font-weight:700;
+
+    text-align:center;
+
+    color:#ffffff;
+
+    line-height:1.3;
+
+}
+
+/* ==========================
+   REVEALED
+========================== */
+
+
+.clueButton.revealed{
+
+    background:#234834;
+
+    border:2px solid #4CAF50;
+
+    color:white;
+
+    box-shadow:0 0 12px rgba(76,175,80,.35);
+
+    opacity:1;
+
+    cursor:default;
+
+}

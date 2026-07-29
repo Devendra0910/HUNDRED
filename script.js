@@ -113,7 +113,7 @@ function createButtons(){
 function endGame(reason = "completed", answer = null, userGuess = null) {
 
     clueContainer.innerHTML = "";
-    revealed.innerHTML = "";
+    //revealed.innerHTML = "";
     guessButton.disabled = true;
     guessInput.disabled = true;
     nextButton.style.display = "none";
