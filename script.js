@@ -65,6 +65,7 @@ const message=document.getElementById("message");
 const guessInput=document.getElementById("guessInput");
 const guessButton=document.getElementById("guessButton");
 const nextButton=document.getElementById("nextButton");
+const buyCluesSection = document.getElementById("buyCluesSection");
 
 guessButton.addEventListener("click",guess);
 nextButton.addEventListener("click",nextRound);
@@ -112,6 +113,15 @@ function createButtons(){
 
 function endGame(reason = "completed", answer = null, userGuess = null) {
 
+    console.log("endGame called:", reason);
+        // Hide game UI
+    /*document.querySelector(".objective").style.display = "none";
+    document.querySelector(".topBar").style.display = "none";
+    document.querySelector(".progressContainer").style.display = "none";
+    document.getElementById("progressText").style.display = "none";
+    document.querySelector(".guessArea").style.display = "none";*/
+
+    buyCluesSection.style.display = "none";
     clueContainer.innerHTML = "";
     //revealed.innerHTML = "";
     guessButton.disabled = true;
@@ -168,6 +178,10 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
           <hr>
 
+          <button id="restartButton">
+              🔄 Play Again
+           </button>
+
           <h3>Clues Purchased</h3>
 
           ${clueHistory || `
@@ -177,7 +191,7 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
             `}
 
           <hr>
-
+          
           <div class="resultStats">
 
             <div class="statCard">
@@ -192,15 +206,41 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
           </div>
 
-          <br><br>
 
-          <button id="restartButton">
-              🔄 Play Again
-          </button>
           </div>
       `;
+
     }
-     else {
+    else {
+
+    message.innerHTML = `
+        <div class="resultCard">
+
+            <h2 class="resultTitle">🎉 Level Complete!</h2>
+
+            <div class="resultStats">
+
+                <div class="statCard">
+                    <div class="statValue">${solved}/${LEVEL.questions}</div>
+                    <div class="statLabel">Solved</div>
+                </div>
+
+                <div class="statCard">
+                    <div class="statValue">${coins}</div>
+                    <div class="statLabel">Coins Left</div>
+                </div>
+
+            </div>
+
+            <button id="restartButton">
+                🔄 Play Again
+            </button>
+
+        </div>
+    `;
+
+    }
+     /*else {
         message.innerHTML = `
             <h2>🎉 LEVEL COMPLETE!</h2>
             <br>
@@ -211,7 +251,7 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
               Play Again
             </button>   
             `;
-    }
+    }*/
     document.getElementById("restartButton").addEventListener("click", () => {location.reload()});
 
 }
@@ -236,14 +276,26 @@ function showHome() {
               </p>
 
               <div class="levelGrid">
+                  <button class="levelButton" data-level="1">🌱 Level 1 (Basics)</button>
 
-                <button class="levelButton" data-level="1">🌱 Level 1 (Basics) </button>
-                <button class="levelButton" data-level="2">🔢 Level 2 (Patterns)</button>
-                <button class="levelButton" data-level="3">💠 Level 3 (Factors) </button>
-                <button class="levelButton" data-level="4">🧬 Level 4 (Traits) </button>
-                <button class="levelButton" data-level="5">🔄 Level 5 (Reverse)</button>
-                <button class="levelButton" data-level="6">📚 Level 6 (English)</button>
-                <button class="levelButton" data-level="7">🏛️ Level 7 (Roman)</button>
+                  <button class="levelButton" data-level="2">🔤 Level 2 (English)</button>
+
+                  <button class="levelButton" data-level="3">🔢 Level 3 (Digits)</button>
+
+                  <button class="levelButton" data-level="4">➗ Level 4 (Reverse)</button>
+
+                  <button class="levelButton" data-level="5">🔄 Level 5 (Lcm/Gcd)</button>
+
+                  <button class="levelButton" data-level="6">⚖️  Level 6 (Modulo)</button>
+
+                  <button class="levelButton" data-level="7">🏛️ Level 7 (Roman)</button>
+
+                  <button class="levelButton" data-level="8">💻 Level 8 (Binary)</button>
+
+                  <button class="levelButton" data-level="9">💎 Level 9 (Divisors)</button>
+
+                  <button class="levelButton" data-level="10">🔶 Level 10 (Prime)</button>
+
             </div>
           </div> 
       `;
@@ -301,6 +353,7 @@ function nextRound(){
     purchasedClues={};
     //revealed.innerHTML="No clues purchased.";
     message.textContent="";
+    buyCluesSection.style.display = "block";
     guessInput.value="";
     guessButton.style.display = "inline-block";
     nextButton.style.display = "none";
@@ -331,7 +384,7 @@ function guess(){
        if (solved === LEVEL.questions) {
 
           updateStats();
-          endGame("completed");
+          endGame("completed",currentNumber);
           return;
 
         }
@@ -346,6 +399,8 @@ function guess(){
    }
     
     updateStats();
+
+    buyCluesSection.style.display = "none";
 
     guessButton.style.display = "none";
     nextButton.style.display = "inline-block";

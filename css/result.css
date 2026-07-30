@@ -23,6 +23,11 @@
 
 }
 
+.resultCard {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
 
 .answerCompare{
 
@@ -179,29 +184,35 @@
 
 }
 
-#restartButton{
+#restartButton {
 
-    width:180px;
+    display: block;
 
-    border:none;
+    width: 220px;
 
-    border-radius:8px;
+    margin: 24px auto 0;
 
-    background:#2b6cff;
+    padding: 14px 20px;
 
-    color:white;
+    border: none;
 
-    font-size:22px;
+    border-radius: 10px;
 
-    cursor:pointer;
+    background: #2b6cff;
 
-    transition:.2s;
+    color: white;
 
+    font-size: 22px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
 }
 
-#restartButton:hover{
-
-    background:#124fd6;
-
+#restartButton:hover {
+    background: #124fd6;
 }
+
 

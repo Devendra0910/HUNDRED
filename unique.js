@@ -120,8 +120,7 @@ function printBenchmark(simulator, ai) {
 
 }*/
 
-const LEVEL_NUMBER = 7
-;
+const LEVEL_NUMBER = 10;
 
 const TEST_LEVEL = LEVELS[LEVEL_NUMBER];
 
@@ -134,9 +133,11 @@ console.clear();
 
 
 printSection(`Testing Level ${TEST_LEVEL.id} : ${TEST_LEVEL.name}`);
-
+print(`Clues  ${TEST_LEVEL.clues}`);
 
 const signatureMap = new Map();
+
+
 
 for (let n = TEST_LEVEL.deckStart; n <= TEST_LEVEL.deckEnd; n++) {
 

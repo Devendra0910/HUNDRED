@@ -60,31 +60,34 @@ const LEVELS = {
 
         clues: [
 
+            "greaterThan25",
             "greaterThan50",
+            "greaterThan75",
 
             "oddEven",
 
             "divisibleBy3",
+            "divisibleBy5",
 
             "greaterThanReverse",
-            
+            "perfectSquare",
+
             "digitSum",
-            
             "largestDigit"
 
         ]
     },
 
 
-    5: {
+    2: {
 
-    id: 5,
+    id: 2,
 
-    name: "LCM and GCD",
+    name: "Number Patterns",
 
     description: "Discover new ways to identify numbers.",
 
-    difficulty: 5,
+    difficulty: 2,
 
     category: "Patterns",
 
@@ -114,40 +117,46 @@ const LEVELS = {
     music: "desert",
 
     unlockRequirement: {
-        level: 4
+        level: 1
     },
 
     clues: [
 
-        "gcdWith2",
+        "unitsDigit",
 
-        "gcdWith3",
+        "divisibleBy11",
 
-        "lcmWith4",
+        "digitDifference",
 
+        "prime",
 
-        "lcmWith5",
+        "greaterThan50",
 
-        "gcdWith6",
+        "numberOfDigits",
 
-        "gcdWith7"
+        "greaterThan30",
 
+        "greaterThan70",
+
+        "divisibleBy6",
+
+        "perfectSquare"
 
     ]
 
     },
 
-    9: {
+    3: {
 
-    id: 9,
+    id: 3,
 
-    name: "Divisors",
+    name: "Factors",
 
     description: "Use factorization to identify numbers.",
 
-    difficulty: 9,
+    difficulty: 3,
 
-    category: "Divisors",
+    category: "Factors",
 
     deckStart: 1,
     deckEnd: 100,
@@ -175,32 +184,43 @@ const LEVELS = {
     music: "mountain",
 
     unlockRequirement: {
-        level: 8
+        level: 2
     },
 
     clues: [
 
-        "numberOfDivisors",
-        "smallestPrimeDivisor",
-        "largestPrimeDivisor",
         "divisibleBy4",
         "divisibleBy6",
-        "divisibleBy9"
+        "divisibleBy8",
+
+        "numberOfFactors",
+
+        "smallestPrimeFactor",
+
+        "largestPrimeFactor",
+
+        "distinctPrimeFactors",
+
+        "powerOfTwo",
+
+        "divisibleBy9",
+
+        "prime"
 
     ]
 
     },
-   6: {
+   4: {
 
-    id: 6,
+    id: 4,
 
-    name: "Modulo",
+    name: "Attributes",
 
     description: "Use a variety of number attributes to identify the hidden number.",
 
-    difficulty: 6,
+    difficulty: 4,
 
-    category: "Modulo",
+    category: "Attributes",
 
     deckStart: 1,
     deckEnd: 100,
@@ -228,35 +248,43 @@ const LEVELS = {
     music: "snow",
 
     unlockRequirement: {
-        level: 5
+        level: 3
     },
 
     clues: [
 
+        "calendarDate",
+
+        "divisibleBy3",
+
+        "minuteOfHour",
+
+        "largestDigit",
+
+        "distinctPrimeFactors",
+
+        "englishLetterCount",
+
+        "greaterThanReverse",
+
         "modulo3",
 
-        "modulo4",
+        "prime",
 
-        "modulo5",
-
-        "modulo6",
-
-        "modulo7",
-
-        "modulo8"
+        "oddEven"
 
     ]
 
     },
-  4: {
+  5: {
 
-    id: 4,
+    id: 5,
 
     name: "Reverse",
 
     description: "Think backwards. Use clues based on the reversed number.",
 
-    difficulty: 4,
+    difficulty: 5,
 
     category: "Reverse",
 
@@ -286,36 +314,43 @@ const LEVELS = {
     music: "volcano",
 
     unlockRequirement: {
-        level: 3
+        level: 4
     },
 
     clues: [
 
+        "reverseGreaterThan50",
 
         "greaterThanReverse",
 
         "reverseEven",
 
-        "reverseGreaterThan20",
+        "reverseGreaterThan25",
+
+        "divisibleBy4",
 
         "reverseDifference",
 
-        "reverseGreaterThan80",
+        "reverseGreaterThan75",
+
+        "greaterThan50",
+
+        "oddEven",
 
         "reverseDigitSum"
 
     ]
 
   },
-  2: {
+  6: {
 
-    id: 2,
+    id: 6,
 
     name: "English",
 
     description: "Think using the English spelling of numbers.",
 
-    difficulty: 2,
+    difficulty: 6,
 
     category: "English",
 
@@ -345,7 +380,7 @@ const LEVELS = {
     music: "library",
 
     unlockRequirement: {
-        level: 1
+        level: 5
     },
 
     clues: [
@@ -353,14 +388,22 @@ const LEVELS = {
         "englishStartingLetter",
 
         "englishLetterCount",
-   
-        "countOfLetterF",
+
+        "englishVowelCount",
+
+        "containsLetterO",
+
+        "containsTY",
 
         "englishLastLetter",
 
-        "containsLetterW",
+        "greaterThan30",
 
-        "digitSum"
+        "containsLetterS",
+
+        "divisibleBy3",
+
+        "largestDigit"
 
     ]
 
@@ -415,194 +458,22 @@ const LEVELS = {
 
         "romanEndsWith",
 
+        "romanContainsI",
+
+        "romanContainsV",
+
+        "romanContainsX",
+
+        "romanDistinctLetters",
+
         "romanNumberOfI",
 
-        "romanContainsL",
+        "digitSum",
 
-        "digitSum"
-
-    ]
-
-   },
-
-    8: {
-
-    id: 8,
-
-    name: "Binary",
-
-    description: "Think using binary representation.",
-
-    difficulty: 8,
-
-    category: "Binary",
-
-    deckStart: 1,
-    deckEnd: 100,
-
-    questions: 5,
-
-    startingCoins: 40,
-
-    clueCostMultiplier: 1,
-    clueCostIncrement: 1,
-
-    allowRepeatedNumbers: false,
-
-    coinsPerCorrect: 0,
-    coinsPerWrong: 0,
-
-    bonusPerUnusedCoin: 0,
-
-    scorePerCorrect: 1,
-
-    theme: "space",
-
-    background: "space",
-
-    music: "space",
-
-    unlockRequirement: {
-        level: 7
-    },
-
-    clues: [
-
-        "binaryLength",
-
-        "binaryOnes",
-
-        "longestBinaryOnes",
-
-        "trailingBinaryZeros",
-
-        "binaryGreaterThanReverse",
-
-        "digitSum"
+        "greaterThan50"
 
     ]
 
-    },
-
-
-    3: {
-
-    id: 3,
-
-    name: "Digits",
-
-    description: "Use decimal digit properties to identify the hidden number.",
-
-    difficulty: 3,
-
-    category: "Digits",
-
-    deckStart: 1,
-    deckEnd: 100,
-
-    questions: 5,
-
-    startingCoins: 40,
-
-    clueCostMultiplier: 1,
-    clueCostIncrement: 1,
-
-    allowRepeatedNumbers: false,
-
-    coinsPerCorrect: 0,
-    coinsPerWrong: 0,
-
-    bonusPerUnusedCoin: 0,
-
-    scorePerCorrect: 1,
-
-    theme: "city",
-
-    background: "city",
-
-    music: "city",
-
-    unlockRequirement: {
-        level: 2
-    },
-
-    clues: [
-
-        "largestDigit",
-
-        "digitProduct",
-
-        "tensDigitOdd",
-
-        "tensDigitComposite",
-
-        "unitsDigitDivisibleBy3",
-
-        "englishLastLetter"
-
-    ]
-
-    },
-
-    10: {
-
-    id: 10,
-
-    name: "Prime",
-
-    description: "Use prime numbers and prime factorization to identify the hidden number.",
-
-    difficulty: 10,
-
-    category: "Prime",
-
-    deckStart: 1,
-    deckEnd: 100,
-
-    questions: 5,
-
-    startingCoins: 40,
-
-    clueCostMultiplier: 1,
-    clueCostIncrement: 1,
-
-    allowRepeatedNumbers: false,
-
-    coinsPerCorrect: 0,
-    coinsPerWrong: 0,
-
-    bonusPerUnusedCoin: 0,
-
-    scorePerCorrect: 1,
-
-    theme: "cave",
-
-    background: "cave",
-
-    music: "cave",
-
-    unlockRequirement: {
-        level: 9
-    },
-
-    clues: [
-
-        "largestPrimeDivisor",
-
-        "reversePrime",
-
-        "distanceToNearestPrime",
-
-        "distanceToSecondNearestPrime",
-
-        "largestDigit",  
-
-        "lengthOfPrimeFactorisation"
-
-    ]
-
-    },
-
-
+}
 
 };

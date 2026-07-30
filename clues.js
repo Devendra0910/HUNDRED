@@ -18,6 +18,13 @@ function toEnglish(n) {
     return words[tens] + "-" + words[ones];
 }
 
+function gcd(a, b) {
+    while (b !== 0) {
+        [a, b] = [b, a % b];
+    }
+    return a;
+}
+
 
 const CLUES = {
 
@@ -125,6 +132,25 @@ const CLUES = {
 
             return "Yes";
         }
+    },
+
+    composite: {
+    name: "Composite?",
+    cost: 1,
+    category: "green",
+    fn(n) {
+
+        if (n < 2)
+            return "No";
+
+        for (let i = 2; i * i <= n; i++) {
+
+            if (n % i === 0)
+                return "Yes";
+        }
+
+        return "No";
+    }
     },
 
     perfectSquare: {
@@ -259,8 +285,8 @@ const CLUES = {
         }
     },
 
-    numberOfFactors: {
-        name: "Number of Factors",
+    numberOfDivisors: {
+        name: "Number of Divisors",
         cost: 1,
         category: "orange",
         fn(n) {
@@ -282,8 +308,8 @@ const CLUES = {
         }
     },
 
-    smallestPrimeFactor: {
-        name: "Smallest Prime Factor",
+    smallestPrimeDivisor: {
+        name: "Smallest Prime Divisor",
         cost: 1,
         category: "orange",
         fn(n) {
@@ -299,8 +325,8 @@ const CLUES = {
         }
     },
 
-    largestProperFactor: {
-        name: "Largest Proper Factor",
+    largestProperDivisor: {
+        name: "Largest Proper Divisor",
         cost: 1,
         category: "orange",
         fn(n) {
@@ -308,12 +334,12 @@ const CLUES = {
             if (n === 1)
                 return 1;
 
-            return n / CLUES.smallestPrimeFactor.fn(n);
+            return n / CLUES.smallestPrimeDivisor.fn(n);
         }
     },
 
-    largestPrimeFactor: {
-        name: "Largest Prime Factor",
+    largestPrimeDivisor: {
+        name: "Largest Prime Divisor",
         cost: 1,
         category: "orange",
         fn(n) {
@@ -337,8 +363,8 @@ const CLUES = {
         }
     },
 
-    distinctPrimeFactors: {
-        name: "Distinct Prime Factors",
+    distinctPrimeDivisors: {
+        name: "Distinct Prime Divisors",
         cost: 1,
         category: "orange",
         fn(n) {
@@ -417,7 +443,7 @@ const CLUES = {
     },
 
     digitSum: {
-        name: "Digit Sum",
+        name: "Digit Sum in decimal",
         cost: 1,
         category: "purple",
         fn(n) {
@@ -523,7 +549,7 @@ const CLUES = {
     },
 
     binaryLength: {
-        name: "Binary Length",
+        name: "Length of binary number",
         cost: 1,
         category: "cyan",
         fn(n) {
@@ -541,7 +567,7 @@ const CLUES = {
     },
 
     trailingBinaryZeros: {
-        name: "Trailing Binary Zeros",
+        name: "Zeros at the end of binary number",
         cost: 1,
         category: "cyan",
         fn(n) {
@@ -555,6 +581,40 @@ const CLUES = {
 
             return c;
         }
+    },
+
+    longestBinaryOnes: {
+    name: "Longest Run of 1s",
+    cost: 1,
+    category: "cyan",
+    fn(n) {
+
+        return Math.max(
+            ...n
+                .toString(2)
+                .split("0")
+                .map(s => s.length)
+        );
+    }
+    },
+
+    binaryGreaterThanReverse: {
+    name: "Greater Than Binary Reverse?",
+    cost: 1,
+    category: "cyan",
+    fn(n) {
+
+        const binary = n.toString(2);
+
+        const reversed = binary
+            .split("")
+            .reverse()
+            .join("");
+
+        const rev = parseInt(reversed, 2);
+
+        return n > rev ? "Yes" : "No";
+    }
     },
 
     binaryEndsEven: {
@@ -714,6 +774,53 @@ const CLUES = {
             return n % 3;
         }
     },
+  
+    modulo4: {
+    name: "Remainder when divided by 4",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+        return n % 4;
+    }
+    },
+
+    modulo5: {
+      name: "Remainder when divided by 5",
+      cost: 1,
+      category: "pink",
+      fn(n) {
+        return n % 5;
+      }
+    },
+
+    modulo6: {
+      name: "Remainder when divided by 6",
+      cost: 1,
+      category: "pink",
+      fn(n) {
+        return n % 6;
+      }
+    },
+
+    modulo7: {
+        name: "Remainder when divided by 7",
+        cost: 1,
+        category: "pink",
+        fn(n) {
+          return n % 7;
+      }
+    },
+
+    modulo8: {
+        name: "Remainder when divided by 8",
+        cost: 1,
+        category: "pink",
+        fn(n) {
+          return n % 8;
+      }
+    },
+
+
     greaterThan25: {
       name: "Greater than 25?",
       cost: 1,
@@ -899,6 +1006,20 @@ reverseDigitSum: {
     }
 },
 
+reverseGreaterThan20: {
+     name: "Reverse Greater than 20?",
+     cost: 1,
+     category: "pink",
+     fn(n) {         
+          const rev = Number(
+              n.toString().split("").reverse().join("")
+         );             
+         return rev > 20 ? "Yes" : "No";
+     }
+},      
+
+
+
 reverseGreaterThan25: {
     name: "Reverse Greater than 25?",
     cost: 1,
@@ -926,6 +1047,21 @@ reverseGreaterThan75: {
         return rev > 75 ? "Yes" : "No";
     }
 },
+
+reverseGreaterThan80: {
+     name: "Reverse Greater than 80?",
+     cost: 1,
+     category: "pink",
+     fn(n) {
+ 
+         const rev = Number(
+             n.toString().split("").reverse().join("")
+         );
+ 
+         return rev > 80 ? "Yes" : "No";
+     }
+ },  
+
 englishStartingLetter: {
     name: "Starting Letter",
     cost: 1,
@@ -995,6 +1131,42 @@ containsLetterN: {
               ? "Yes"
               : "No";
           } 
+},
+
+containsLetterW: {
+    name: 'Contains Letter "W"?',
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        return toEnglish(n).toLowerCase().includes("w")
+            ? "Yes"
+            : "No";
+    }
+},
+
+containsLetterV: {
+    name: 'Contains Letter "V"?',
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        return toEnglish(n).toLowerCase().includes("v")
+            ? "Yes"
+            : "No";
+    }
+},
+
+countOfLetterF: {
+    name: 'Count of Letter "F"',
+    cost: 1,
+    category: "red",
+    fn(n) {
+
+        return [...toEnglish(n).toLowerCase()]
+            .filter(c => c === "f")
+            .length;
+    }
 },
 
 
@@ -1120,7 +1292,242 @@ romanNumberOfC: {
     fn(n) {
         return [...CLUES.toRoman.fn(n)].filter(c => c === "C").length;
     }
+},
+lcmWith2: {
+    name: "LCM with 2",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return (2 * n) / gcd(n, 2);
+    }
+},
+
+lcmWith3: {
+    name: "LCM with 3",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return (3 * n) / gcd(n, 3);
+    }
+},
+
+lcmWith4: {
+    name: "LCM with 4",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return (4 * n) / gcd(n, 4);
+    }
+},
+
+lcmWith5: {
+    name: "LCM with 5",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return (5 * n) / gcd(n, 5);
+    }
+},
+
+lcmWith6: {
+    name: "LCM with 6",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return (6 * n) / gcd(n, 6);
+    }
+},
+
+lcmWith7: {
+    name: "LCM with 7",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return (7 * n) / gcd(n, 7);
+    }
+},
+gcdWith2: {
+    name: "GCD with 2",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return gcd(n, 2);
+    }
+},
+
+gcdWith3: {
+    name: "GCD with 3",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return gcd(n, 3);
+    }
+},
+
+gcdWith4: {
+    name: "GCD with 4",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return gcd(n, 4);
+    }
+},
+
+gcdWith5: {
+    name: "GCD with 5",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return gcd(n, 5);
+    }
+},
+
+gcdWith6: {
+    name: "GCD with 6",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return gcd(n, 6);
+    }
+},
+
+gcdWith7: {
+    name: "GCD with 7",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return gcd(n, 7);
+    }
+},
+
+tensDigitOdd: {
+    name: "Tens Digit Odd?",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+
+        const tens = Math.floor(n / 10);
+
+        return tens % 2 === 1 ? "Yes" : "No";
+    }
+},
+
+tensDigitComposite: {
+    name: "Tens Digit Composite?",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+
+        const tens = Math.floor(n / 10);
+
+        return [4, 6, 8, 9].includes(tens)
+            ? "Yes"
+            : "No";
+    }
+},
+
+unitsDigitDivisibleBy3: {
+    name: "Units Digit Divisible by 3?",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+
+        const units = n % 10;
+
+        return units % 3 === 0
+            ? "Yes"
+            : "No";
+    }
+},
+
+distanceToNearestPrime: {
+    name: "Distance to Nearest Prime",
+    cost: 1,
+    category: "green",
+    fn(n) {
+
+        function isPrime(x) {
+
+            if (x < 2) return false;
+
+            for (let i = 2; i * i <= x; i++) {
+                if (x % i === 0) return false;
+            }
+
+            return true;
+        }
+
+        let d = 0;
+
+        while (true) {
+
+            if (isPrime(n - d) || isPrime(n + d))
+                return d;
+
+            d++;
+        }
+    }
+},
+
+distanceToSecondNearestPrime: {
+    name: "Distance to 2nd Nearest Prime",
+    cost: 1,
+    category: "green",
+    fn(n) {
+
+        function isPrime(x) {
+
+            if (x < 2) return false;
+
+            for (let i = 2; i * i <= x; i++) {
+                if (x % i === 0) return false;
+            }
+
+            return true;
+        }
+
+        const distances = [];
+
+        for (let p = 2; p <= 101; p++) {
+
+            if (isPrime(p))
+                distances.push(Math.abs(n - p));
+        }
+
+        distances.sort((a, b) => a - b);
+
+        return distances[1];
+    }
+},
+
+lengthOfPrimeFactorisation: {
+    name: "Length of Prime Factorisation",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+
+        if (n === 1)
+            return 0;
+
+        let x = n;
+        let count = 0;
+
+        for (let i = 2; i * i <= x; i++) {
+
+            while (x % i === 0) {
+
+                count++;
+                x /= i;
+            }
+        }
+
+        if (x > 1)
+            count++;
+
+        return count;
+    }
 }
+
 
 };
 
