@@ -1,0 +1,66 @@
+@media (max-width:768px){
+
+    .resultCard{
+
+        width:100%;
+
+        margin:10px auto;
+
+        padding:20px;
+
+    }
+
+    .resultTitle{
+
+        font-size:28px;
+
+    }
+
+    .answerCompare{
+
+        flex-direction:column;
+
+        gap:16px;
+
+    }
+
+    .answerArrow{
+
+        transform:rotate(90deg);
+
+        font-size:42px;
+
+    }
+
+    .answerNumber{
+
+        font-size:40px;
+
+    }
+
+    .clueResult{
+
+        padding:12px;
+
+    }
+
+    .resultStats{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:14px;
+
+    }
+
+    .statCard{
+
+        width:100%;
+
+        max-width:none;
+
+    }
+
+}
+

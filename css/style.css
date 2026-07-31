@@ -1,6 +1,10 @@
-@import "shared.css";
-@import "home.css";
-@import "game.css";
-@import "clues.css";
-@import "result.css";
-@import "mobile.css";
+@import "desktop/shared.css";
+@import "desktop/home.css";
+@import "desktop/game.css";
+@import "desktop/clues.css";
+@import "desktop/result.css";
+
+@import "mobile/home.css";
+@import "mobile/game.css";
+@import "mobile/clues.css";
+@import "mobile/result.css";

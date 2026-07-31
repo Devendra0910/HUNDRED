@@ -1,0 +1,59 @@
+@media (max-width:768px){
+
+    .container{
+        width:96%;
+        margin:10px auto;
+    }
+
+    #homeScreen{
+        padding:24px 16px;
+        justify-content:flex-start;
+    }
+
+    .gameTitle{
+
+        font-size:54px;
+        letter-spacing:3px;
+
+        margin-top:20px;
+        margin-bottom:12px;
+
+        text-align:center;
+    }
+
+    .tagline{
+
+        font-size:18px;
+
+        margin:24px 0 36px;
+
+        padding:0 10px;
+
+    }
+
+    .levelGrid{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:1fr;
+
+        gap:16px;
+
+        margin:0;
+
+    }
+
+    .levelButton{
+
+        width:100%;
+
+        max-width:none;
+
+        padding:18px 20px;
+
+        font-size:24px;
+
+    }
+}
