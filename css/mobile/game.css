@@ -17,13 +17,35 @@
 
     .statusPanel{
 
-        display:flex;
+        display:grid;
+        grid-template-columns:auto 1fr auto;
         align-items:center;
         gap:12px;
-        margin-bottom:12px;
 
     }
 
+    .coinPanel{
+
+        display:flex;
+        align-items:center;
+        gap:8px;
+
+        flex-shrink:0;
+
+        background:white;
+        border-radius:999px;
+        padding:10px 16px;
+
+        font-size:22px;
+        font-weight:bold;
+
+    }
+
+    .progressPanel{
+
+        flex:1;
+
+    }
 
     #gameScreen{
         padding:10px;
