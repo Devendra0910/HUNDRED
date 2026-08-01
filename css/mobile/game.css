@@ -1,73 +1,101 @@
 @media (max-width:768px){
 
-    .topBar{
+    .gameHeader{
 
-        grid-template-columns:repeat(2,1fr);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:12px;
+    }
 
-        gap:10px;
+    .levelTitle{
 
+        font-size:24px;
+        font-weight:700;
+
+    }
+
+    .statusPanel{
+
+        display:flex;
+        align-items:center;
+        gap:12px;
+        margin-bottom:12px;
+
+    }
+
+
+    #gameScreen{
+        padding:10px;
+    }
+
+    .objective{
+        font-size:16px;
+        padding:12px;
+        margin:12px 0 16px;
+        line-height:1.4;
     }
 
     .stat{
-
-        padding:14px;
-
+        padding:10px;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        width:auto;
+        padding:8px 14px;
+        border-radius:999px;
+        white-space:nowrap;
+        flex-shrink:0;
     }
 
     .stat span{
+        margin:0;
+        font-size:20px;
+    }
 
-        font-size:24px;
+    .progressContainer{
+        margin:0;
+        height:14px;
+        width:100%;
+    }
+
+    .progressText{
+        margin-top:4px;
+        text-align:center;
+        font-size:14px;
+    }
+
+    .progressArea{
+
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
 
     }
 
     .mainLayout{
-
         grid-template-columns:1fr;
-
-        gap:16px;
-
+        gap:12px;
     }
 
-        .guessArea{
-
+    .guessArea{
+        display:flex;
         flex-direction:column;
-
-        gap:12px;
-
+        gap:10px;
     }
 
     #guessInput{
-
         width:100%;
-
-        font-size:22px;
-
+        font-size:20px;
+        padding:12px;
     }
 
     #guessButton,
     #nextButton{
-
         width:100%;
-
-        height:56px;
-
-        font-size:22px;
-
+        height:50px;
+        font-size:20px;
     }
-
-    .objective{
-
-        font-size:18px;
-
-        padding:16px;
-
-    }
-
-    #gameScreen{
-
-        padding:16px;
-
-    }
-
 
 }

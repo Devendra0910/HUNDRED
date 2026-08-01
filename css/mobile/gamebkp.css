@@ -1,0 +1,73 @@
+@media (max-width:768px){
+
+    .topBar{
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:10px;
+
+    }
+
+    .stat{
+
+        padding:14px;
+
+    }
+
+    .stat span{
+
+        font-size:24px;
+
+    }
+
+    .mainLayout{
+
+        grid-template-columns:1fr;
+
+        gap:16px;
+
+    }
+
+        .guessArea{
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+    #guessInput{
+
+        width:100%;
+
+        font-size:22px;
+
+    }
+
+    #guessButton,
+    #nextButton{
+
+        width:100%;
+
+        height:56px;
+
+        font-size:22px;
+
+    }
+
+    .objective{
+
+        font-size:18px;
+
+        padding:16px;
+
+    }
+
+    #gameScreen{
+
+        padding:16px;
+
+    }
+
+
+}

@@ -1,3 +1,15 @@
+.statusPanel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:16px;
+
+}
+
 #gameScreen {
 
     min-height: 100vh;
@@ -31,14 +43,6 @@
 
 }
 
-.topBar{
-
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:20px;
-
-}
 
 .stat{
 

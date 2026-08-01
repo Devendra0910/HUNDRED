@@ -23,27 +23,39 @@
     </div>
 
     <div id="gameScreen">
+        <div class="gameHeader">
+            <button id="homeButton">
+              ← Levels
+            </button>
 
-      <h1> HUNDRED </h1>
-      <div class="objective">
+            <div class="levelTitle">
+              Level 1
+           </div>
+        </div>
+    
+
+        <div class="statusPanel">
+            
+
+            <div class="stat">
+                💰 
+                <span id="coins">40</span>
+            </div>
+
+            <div class="progressArea">
+                <div class="progressContainer">
+                    <div id="progressBar" class="progressBar"></div>
+                </div>
+
+                <div id="progressText" class="progressText">
+                    0 / 5 Complete
+                </div>
+            </div>
+       </div>
+
+       <div class="objective"> 
           🎯 <strong>Objective:</strong> Solve all <strong>5 Hidden Numbers</strong> before you run out of coins.
-      </div>
-
-      <div class="topBar">
-
-          <div class="stat">
-              💰 Coins
-              <span id="coins">40</span>
-          </div>
-      </div>
-
-      <div class="progressContainer">
-          <div id="progressBar" class="progressBar"></div>
-      </div>
-
-      <div id="progressText" class="progressText">
-          0 / 5 Complete
-      </div>
+       </div>
 
       <!-- Guess Area moved here -->
 
