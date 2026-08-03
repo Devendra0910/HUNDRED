@@ -23,6 +23,12 @@
     animation:levelAppear .45s ease forwards;
 }
 
+.levelButton.locked{
+    opacity:0.45;
+    cursor:not-allowed;
+    filter:grayscale(100%);
+}
+
 .levelButton:hover:not(:disabled) {
     transform: translateY(-4px) scale(1.03);
     box-shadow: 0 10px 24px rgba(0,0,0,0.3);

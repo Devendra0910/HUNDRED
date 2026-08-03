@@ -1,11 +1,26 @@
 let CURRENT_LEVEL = 1;
 let LEVEL = LEVELS[CURRENT_LEVEL];
 
+const MAX_LEVEL = 10;
+
+function loadUnlockedLevel() {
+    return Number(localStorage.getItem("unlockedLevel") || 1);
+}
+
+function saveUnlockedLevel(level) {
+    localStorage.setItem("unlockedLevel", level);
+}
+
+let unlockedLevel = loadUnlockedLevel();
+
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 
 const homeScreen = document.getElementById("homeScreen");
 const gameScreen = document.getElementById("gameScreen");
+
+const homeButton = document.getElementById("homeButton");
+const levelTitle = document.querySelector(".levelTitle");
 
 //=====================
 // GAME STATE
@@ -69,6 +84,8 @@ const buyCluesSection = document.getElementById("buyCluesSection");
 
 guessButton.addEventListener("click",guess);
 nextButton.addEventListener("click",nextRound);
+
+homeButton.addEventListener("click", showHome);
 
 
 //=====================
@@ -213,6 +230,13 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
     }
     else {
 
+        if (CURRENT_LEVEL < MAX_LEVEL && unlockedLevel < CURRENT_LEVEL + 1) {
+
+          unlockedLevel = CURRENT_LEVEL + 1;
+          saveUnlockedLevel(unlockedLevel);
+
+        }
+
     message.innerHTML = `
         <div class="resultCard">
 
@@ -264,7 +288,29 @@ function showHome() {
 
     gameScreen.style.display = "none";
 
+    levelTitle.textContent = "";
+
     homeScreen.style.display = "block";
+
+    const levelNames = [ "🌱 Basics", "🔤 English", "🔢 Digits", "🔄 Reverse", "⚖️ Lcm/Gcd", "💎 Modulo", "🏛️ Roman", "💻 Binary", "➗ Divisors","🔶 Prime"];
+
+    let levelButtons = "";
+
+    for (let i = 1; i <= MAX_LEVEL; i++) {
+
+      const locked = i > unlockedLevel;
+
+      levelButtons += `
+            <button
+              class="levelButton ${locked ? "locked" : ""}"
+              data-level="${i}"
+              ${locked ? "disabled" : ""}
+            >
+              ${locked ? "🔒 " : ""}
+              ${levelNames[i-1]}
+            </button>
+        `;
+    }
 
     homeScreen.innerHTML = `
       
@@ -276,26 +322,7 @@ function showHome() {
               </p>
 
               <div class="levelGrid">
-                  <button class="levelButton" data-level="1">🌱 Level 1 (Basics)</button>
-
-                  <button class="levelButton" data-level="2">🔤 Level 2 (English)</button>
-
-                  <button class="levelButton" data-level="3">🔢 Level 3 (Digits)</button>
-
-                  <button class="levelButton" data-level="4">➗ Level 4 (Reverse)</button>
-
-                  <button class="levelButton" data-level="5">🔄 Level 5 (Lcm/Gcd)</button>
-
-                  <button class="levelButton" data-level="6">⚖️  Level 6 (Modulo)</button>
-
-                  <button class="levelButton" data-level="7">🏛️ Level 7 (Roman)</button>
-
-                  <button class="levelButton" data-level="8">💻 Level 8 (Binary)</button>
-
-                  <button class="levelButton" data-level="9">💎 Level 9 (Divisors)</button>
-
-                  <button class="levelButton" data-level="10">🔶 Level 10 (Prime)</button>
-
+                  ${levelButtons}
             </div>
           </div> 
       `;
@@ -317,6 +344,8 @@ function startLevel(levelNumber) {
 
     CURRENT_LEVEL = levelNumber;
     LEVEL = LEVELS[levelNumber];
+
+    levelTitle.textContent = `Level ${CURRENT_LEVEL}`;
 
     // Reset state
     coins = LEVEL.startingCoins;
