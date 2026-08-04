@@ -391,7 +391,7 @@ const CLUES = {
         fn(n) {
 
             if (n < 2)
-                return 1;
+                return "N/A";
 
             for (let i = 2; i <= n; i++) {
 
@@ -419,6 +419,9 @@ const CLUES = {
         cost: 1,
         category: "orange",
         fn(n) {
+
+            if (n < 2)
+                return "N/A";
 
             let x = n;
             let ans = 1;
