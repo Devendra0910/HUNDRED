@@ -57,5 +57,37 @@
 
         border-radius:18px;
 
+        gap:12px;
+
+    }
+
+    .levelIcon{
+
+        font-size:32px;
+
+    }
+
+    .levelName{
+
+        font-size:17px;
+
+    }
+
+    .levelTitleSmall{
+
+        font-size:11px;
+
+    }
+
+    .levelBest{
+
+        font-size:12px;
+
+    }
+
+    .lockedLevelName{
+
+        font-size:15px;
+
     }
 }

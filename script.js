@@ -3,6 +3,27 @@ let LEVEL = LEVELS[CURRENT_LEVEL];
 
 const MAX_LEVEL = 10;
 
+function loadBestScore(levelNumber) {
+    return Number(
+        localStorage.getItem(`hundred_bestScore_level_${levelNumber}`) || 0
+    );
+}
+
+function saveBestScore(levelNumber, score) {
+    const currentBest = loadBestScore(levelNumber);
+
+    if (score > currentBest) {
+        localStorage.setItem(
+            `hundred_bestScore_level_${levelNumber}`,
+            score
+        );
+
+        return true;
+    }
+
+    return false;
+}
+
 function loadUnlockedLevel() {
     return Number(localStorage.getItem("unlockedLevel") || 1);
 }
@@ -110,10 +131,6 @@ function createButtons(){
     for (const key of LEVEL.clues) {
         const button=document.createElement("button");
         button.className="clueButton";
-        /*button.innerHTML=`
-            <span>${CLUES[key].name}</span>
-            <span class="cost">${clueCosts[key]} 💰</span>
-        `;*/
          const value = purchasedClues[key]  ? CLUES[key].fn(currentNumber) : `${clueCosts[key]} 💰`;
          button.innerHTML = `<div class="clueTitle"> ${CLUES[key].name} </div>
                             <div class="${purchasedClues[key] ? "clueAnswer" : "cost"}"> ${value}</div>`;
@@ -131,12 +148,6 @@ function createButtons(){
 function endGame(reason = "completed", answer = null, userGuess = null) {
 
     console.log("endGame called:", reason);
-        // Hide game UI
-    /*document.querySelector(".objective").style.display = "none";
-    document.querySelector(".topBar").style.display = "none";
-    document.querySelector(".progressContainer").style.display = "none";
-    document.getElementById("progressText").style.display = "none";
-    document.querySelector(".guessArea").style.display = "none";*/
 
     buyCluesSection.style.display = "none";
     clueContainer.innerHTML = "";
@@ -195,9 +206,11 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
           <hr>
 
-          <button id="restartButton">
-              🔄 Play Again
-           </button>
+          <div class="resultActions">
+              <button id="restartButton">
+                  🔄 Play Again
+              </button>
+          </div>
 
           <h3>Clues Purchased</h3>
 
@@ -234,8 +247,10 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
           unlockedLevel = CURRENT_LEVEL + 1;
           saveUnlockedLevel(unlockedLevel);
-
         }
+
+        const isNewBest = saveBestScore(CURRENT_LEVEL, coins);
+        const bestScore = loadBestScore(CURRENT_LEVEL);
 
     message.innerHTML = `
         <div class="resultCard">
@@ -251,32 +266,44 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
                 <div class="statCard">
                     <div class="statValue">${coins}</div>
-                    <div class="statLabel">Coins Left</div>
+                    <div class="statLabel">
+                        ${isNewBest ? "🏆 New Best!" : "Coins Left"}
+                    </div>
+                </div>
+
+                <div class="statCard">
+                    <div class="statValue">${bestScore}</div>
+                    <div class="statLabel">Best Score</div>
                 </div>
 
             </div>
 
-            <button id="restartButton">
-                🔄 Play Again
-            </button>
+            <div class="resultActions">
+
+                <button id="restartButton">
+                    🔄 Play Again
+                </button>
+
+                ${CURRENT_LEVEL < MAX_LEVEL ? `
+                    <button id="nextLevelButton">
+                        Next Level ➡️
+                    </button>
+                ` : ""}
+
+            </div>
 
         </div>
     `;
 
     }
-     /*else {
-        message.innerHTML = `
-            <h2>🎉 LEVEL COMPLETE!</h2>
-            <br>
-            Solved: ${solved} / ${LEVEL.questions}<br>
-            Coins Left: ${coins}
-             <br><br>
-            <button id="restartButton" class="restartButton">
-              Play Again
-            </button>   
-            `;
-    }*/
     document.getElementById("restartButton").addEventListener("click", () => {location.reload()});
+
+    const nextLevelButton = document.getElementById("nextLevelButton");
+    if (nextLevelButton) {
+        nextLevelButton.addEventListener("click", () => {
+            startLevel(CURRENT_LEVEL + 1);
+        });
+    }
 
 }
 
@@ -292,25 +319,74 @@ function showHome() {
 
     homeScreen.style.display = "block";
 
-    const levelNames = [ "🌱 Basics", "🔤 English", "🔢 Digits", "🔄 Reverse", "⚖️ Lcm/Gcd", "💎 Modulo", "🏛️ Roman", "💻 Binary", "➗ Divisors","🔶 Prime"];
+    const levelNames = [
+    "Basics",
+    "English",
+    "Digits",
+    "Reverse",
+    "Lcm/Gcd",
+    "Modulo",
+    "Roman",
+    "Binary",
+    "Divisors",
+    "Prime"
+];
 
-    let levelButtons = "";
+const levelIcons = [
+    "🌱","🔤","🔢","🔄","⚖️",
+    "💎","🏛️","💻","➗","🔶"
+];
 
-    for (let i = 1; i <= MAX_LEVEL; i++) {
+let levelButtons = "";
 
-      const locked = i > unlockedLevel;
+for (let i = 1; i <= MAX_LEVEL; i++) {
 
-      levelButtons += `
-            <button
-              class="levelButton ${locked ? "locked" : ""}"
-              data-level="${i}"
-              ${locked ? "disabled" : ""}
-            >
-              ${locked ? "🔒 " : ""}
-              ${levelNames[i-1]}
-            </button>
-        `;
-    }
+    const locked = i > unlockedLevel;
+    const completed = i < unlockedLevel;
+    
+    levelButtons += `
+    <button
+        class="levelButton ${locked ? "locked" : ""} ${completed ? "completed" : ""}"
+        data-level="${i}"
+        ${locked ? "disabled" : ""}
+    >
+
+        ${
+            locked
+                ? `
+                    <div class="lockedLevelContent">
+                        <div class="levelIcon">🔒</div>
+                        <div class="lockedLevelName">Level ${i}</div>
+                    </div>
+                `
+                : `
+                    <div class="levelIcon">
+                        ${levelIcons[i - 1]}
+                    </div>
+
+                    <div class="levelInfo">
+                        <div class="levelTitleSmall">
+                            Level ${i}
+                        </div>
+
+                        <div class="levelName">
+                            ${levelNames[i - 1]}
+                        </div>
+
+                        <div class="levelStatus">
+                            ${completed ? "✓ " : ""}
+                        </div>
+
+                        <div class="levelBest">
+                            ${loadBestScore(i) > 0 ? `🏆 Best: ${loadBestScore(i)}` : ""}
+                        </div>
+                    </div>
+                `
+        }
+
+    </button>
+`;
+}
 
     homeScreen.innerHTML = `
       
@@ -387,6 +463,7 @@ function nextRound(){
     guessButton.style.display = "inline-block";
     nextButton.style.display = "none";
     guessInput.disabled = false;
+    guessButton.disabled = false;
     createButtons();
     updateStats();
 }
@@ -475,15 +552,6 @@ function buyClue(type){
 
     // Mark purchased
     purchasedClues[type] = true;
-
-    /*// Reveal clue
-    const value = CLUES[type].fn(currentNumber);
-
-    if(revealed.innerHTML==="No clues purchased.")
-        revealed.innerHTML="";
-
-    revealed.innerHTML +=
-    `<div><b>${CLUES[type].name}</b> : ${value}</div>`;*/
 
     // Refresh buttons to show updated costs
     createButtons();

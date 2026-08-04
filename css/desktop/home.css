@@ -2,6 +2,11 @@
     width: 260px;
     padding: 18px;
 
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+
     font-size: 22px;
     font-weight: bold;
 
@@ -23,6 +28,11 @@
     animation:levelAppear .45s ease forwards;
 }
 
+.levelButton.completed {
+    outline: 3px solid rgba(46,125,50,.65);
+    outline-offset: -3px;
+}
+
 .levelButton.locked{
     opacity:0.45;
     cursor:not-allowed;
@@ -39,6 +49,69 @@
     color: white;
     cursor: not-allowed;
     box-shadow: none;
+    justify-content: center;
+}
+
+.levelIcon {
+    font-size: 40px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.levelInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.levelTitleSmall {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: rgba(0,0,0,0.5);
+}
+
+.levelName {
+    font-size: 20px;
+    font-weight: 800;
+    color: #222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.levelStatus {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1b8a3d;
+    min-height: 18px;
+}
+
+.levelBest {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6b4f00;
+}
+
+.lockedLevelContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.lockedLevelContent .levelIcon {
+    font-size: 30px;
+    opacity: 0.85;
+}
+
+.lockedLevelName {
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
 }
 
 #homeScreen {

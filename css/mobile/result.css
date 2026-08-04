@@ -62,5 +62,20 @@
 
     }
 
+    .resultActions{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    #restartButton,
+    #nextLevelButton{
+
+        width:100%;
+
+    }
+
 }
 
