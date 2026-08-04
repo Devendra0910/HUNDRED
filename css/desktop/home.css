@@ -114,6 +114,51 @@
     color: white;
 }
 
+.tutorialCard {
+
+    width: 100%;
+    max-width: 560px;
+
+    margin: 0 auto 36px;
+    padding: 22px 26px;
+
+    background: rgba(31, 38, 51, 0.92);
+
+    border-radius: 18px;
+
+    border: 2px solid #3d4d63;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.tutorialTitle {
+    margin: 0 0 14px;
+    text-align: center;
+    font-size: 22px;
+    color: #F6C445;
+}
+
+.tutorialStep {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 8px 0;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: #dbe2ee;
+}
+
+.tutorialStep + .tutorialStep {
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.tutorialIcon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
 #homeScreen {
 
     min-height: 100vh;

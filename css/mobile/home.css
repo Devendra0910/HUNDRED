@@ -90,4 +90,32 @@
         font-size:15px;
 
     }
+
+    .tutorialCard{
+
+        padding:16px 18px;
+
+        margin-bottom:20px;
+
+    }
+
+    .tutorialTitle{
+
+        font-size:18px;
+
+    }
+
+    .tutorialStep{
+
+        font-size:13px;
+
+        gap:10px;
+
+    }
+
+    .tutorialIcon{
+
+        font-size:17px;
+
+    }
 }

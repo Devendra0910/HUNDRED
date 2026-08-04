@@ -387,8 +387,36 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 `;
 }
 
+    const tutorialHtml = unlockedLevel === 1 ? `
+        <div class="tutorialCard">
+
+            <h3 class="tutorialTitle">👋 How to Play</h3>
+
+            <div class="tutorialStep">
+                <span class="tutorialIcon">🎯</span>
+                <span>Guess the hidden number between 1 and 100.</span>
+            </div>
+
+            <div class="tutorialStep">
+                <span class="tutorialIcon">💰</span>
+                <span>Not sure? Spend coins to buy clues about the number.</span>
+            </div>
+
+            <div class="tutorialStep">
+                <span class="tutorialIcon">✅</span>
+                <span>Solve all questions before you run out of coins to win.</span>
+            </div>
+
+            <div class="tutorialStep">
+                <span class="tutorialIcon">❌</span>
+                <span>One wrong guess ends the round, so guess carefully!</span>
+            </div>
+
+        </div>
+    ` : "";
+
     homeScreen.innerHTML = `
-      
+
          <div class="menu">
              <h1 class="gameTitle">HUNDRED</h1>
 
@@ -396,10 +424,12 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
                  Deduce • Discover • Master
               </p>
 
+              ${tutorialHtml}
+
               <div class="levelGrid">
                   ${levelButtons}
             </div>
-          </div> 
+          </div>
       `;
 
 
