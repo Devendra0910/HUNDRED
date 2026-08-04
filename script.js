@@ -4,15 +4,14 @@ let LEVEL = LEVELS[CURRENT_LEVEL];
 const MAX_LEVEL = 10;
 
 function loadBestScore(levelNumber) {
-    return Number(
-        localStorage.getItem(`hundred_bestScore_level_${levelNumber}`) || 0
-    );
+    const raw = localStorage.getItem(`hundred_bestScore_level_${levelNumber}`);
+    return raw === null ? null : Number(raw);
 }
 
 function saveBestScore(levelNumber, score) {
     const currentBest = loadBestScore(levelNumber);
 
-    if (score > currentBest) {
+    if (currentBest === null || score > currentBest) {
         localStorage.setItem(
             `hundred_bestScore_level_${levelNumber}`,
             score
@@ -378,7 +377,7 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
                         </div>
 
                         <div class="levelBest">
-                            ${loadBestScore(i) > 0 ? `🏆 Best: ${loadBestScore(i)}` : ""}
+                            ${loadBestScore(i) !== null ? `🏆 Best: ${loadBestScore(i)}` : ""}
                         </div>
                     </div>
                 `
