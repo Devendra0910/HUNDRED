@@ -603,6 +603,65 @@ const LEVELS = {
 
     },
 
+    11: {
+
+    id: 11,
+
+    name: "Special Numbers",
+
+    description: "Identify the hidden number using its special mathematical identities.",
+
+    difficulty: 11,
+
+    category: "Special",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "observatory",
+
+    background: "observatory",
+
+    music: "observatory",
+
+    unlockRequirement: {
+        level: 10
+    },
+
+    clues: [
+
+        "prime",
+
+        "distanceToNearestFibonacci",
+
+        "distanceToNearestTriangular",
+
+        "distanceToNearestPowerOfTwo",
+
+        "perfectSquare",
+
+        "harshad"
+
+    ]
+
+    },
+
 
 
 };

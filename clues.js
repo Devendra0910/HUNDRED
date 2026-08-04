@@ -285,6 +285,82 @@ const CLUES = {
         }
     },
 
+    distanceToNearestFibonacci: {
+        name: "Distance to Nearest Fibonacci",
+        cost: 1,
+        category: "green",
+        fn(n) {
+
+            function isFibonacci(x) {
+
+                function isSquare(y) {
+                    return y >= 0 && Number.isInteger(Math.sqrt(y));
+                }
+
+                return isSquare(5 * x * x + 4) || isSquare(5 * x * x - 4);
+            }
+
+            let d = 0;
+
+            while (true) {
+
+                if (isFibonacci(n - d) || isFibonacci(n + d))
+                    return d;
+
+                d++;
+            }
+        }
+    },
+
+    distanceToNearestTriangular: {
+        name: "Distance to Nearest Triangular Number",
+        cost: 1,
+        category: "green",
+        fn(n) {
+
+            function isTriangular(x) {
+
+                if (x < 0) return false;
+
+                const k = (Math.sqrt(8 * x + 1) - 1) / 2;
+
+                return Number.isInteger(k);
+            }
+
+            let d = 0;
+
+            while (true) {
+
+                if (isTriangular(n - d) || isTriangular(n + d))
+                    return d;
+
+                d++;
+            }
+        }
+    },
+
+    distanceToNearestPowerOfTwo: {
+        name: "Distance to Nearest Power of Two",
+        cost: 1,
+        category: "green",
+        fn(n) {
+
+            function isPowerOfTwo(x) {
+                return x > 0 && (x & (x - 1)) === 0;
+            }
+
+            let d = 0;
+
+            while (true) {
+
+                if (isPowerOfTwo(n - d) || isPowerOfTwo(n + d))
+                    return d;
+
+                d++;
+            }
+        }
+    },
+
     numberOfDivisors: {
         name: "Number of Divisors",
         cost: 1,

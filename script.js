@@ -1,7 +1,7 @@
 let CURRENT_LEVEL = 1;
 let LEVEL = LEVELS[CURRENT_LEVEL];
 
-const MAX_LEVEL = 10;
+const MAX_LEVEL = 11;
 
 function loadBestScore(levelNumber) {
     const raw = localStorage.getItem(`hundred_bestScore_level_${levelNumber}`);
@@ -21,6 +21,31 @@ function saveBestScore(levelNumber, score) {
     }
 
     return false;
+}
+
+function computePercentile(levelNumber, bestScore) {
+
+    if (bestScore === null) return null;
+
+    const samples = PERCENTILE_DATA[levelNumber];
+    const level = LEVELS[levelNumber];
+
+    if (!samples || !level) return null;
+
+    const spent = level.startingCoins - bestScore;
+
+    let lo = 0, hi = samples.length;
+
+    while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (samples[mid] < spent) lo = mid + 1;
+        else hi = mid;
+    }
+
+    const betterOrEqualCount = samples.length - lo;
+    const percentileBeaten = Math.round((betterOrEqualCount / samples.length) * 100);
+
+    return Math.min(100, Math.max(0, percentileBeaten));
 }
 
 function loadUnlockedLevel() {
@@ -328,12 +353,13 @@ function showHome() {
     "Roman",
     "Binary",
     "Divisors",
-    "Prime"
+    "Prime",
+    "Special Numbers"
 ];
 
 const levelIcons = [
     "🌱","🔤","🔢","🔄","⚖️",
-    "💎","🏛️","💻","➗","🔶"
+    "💎","🏛️","💻","➗","🔶","✨"
 ];
 
 let levelButtons = "";
@@ -342,7 +368,9 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 
     const locked = i > unlockedLevel;
     const completed = i < unlockedLevel;
-    
+    const bestScore = loadBestScore(i);
+    const percentile = computePercentile(i, bestScore);
+
     levelButtons += `
     <button
         class="levelButton ${locked ? "locked" : ""} ${completed ? "completed" : ""}"
@@ -377,7 +405,11 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
                         </div>
 
                         <div class="levelBest">
-                            ${loadBestScore(i) !== null ? `🏆 Best: ${loadBestScore(i)}` : ""}
+                            ${bestScore !== null ? `🏆 Best: ${bestScore}` : ""}
+                        </div>
+
+                        <div class="levelPercentile">
+                            ${percentile !== null ? `📊 Better than ${percentile}% players` : ""}
                         </div>
                     </div>
                 `

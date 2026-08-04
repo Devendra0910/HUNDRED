@@ -95,6 +95,12 @@
     color: #6b4f00;
 }
 
+.levelPercentile {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a4d7a;
+}
+
 .lockedLevelContent {
     display: flex;
     align-items: center;
