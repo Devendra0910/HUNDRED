@@ -26,6 +26,110 @@ function gcd(a, b) {
 }
 
 
+// [symbol, name, isMetal, isNobleGas, isNaturallyOccurring, isRadioactive, groupNumber]
+const ELEMENTS = [
+    ["H", "Hydrogen", 0, 0, 1, 0, 1],
+    ["He", "Helium", 0, 1, 1, 0, 18],
+    ["Li", "Lithium", 1, 0, 1, 0, 1],
+    ["Be", "Beryllium", 1, 0, 1, 0, 2],
+    ["B", "Boron", 0, 0, 1, 0, 13],
+    ["C", "Carbon", 0, 0, 1, 0, 14],
+    ["N", "Nitrogen", 0, 0, 1, 0, 15],
+    ["O", "Oxygen", 0, 0, 1, 0, 16],
+    ["F", "Fluorine", 0, 0, 1, 0, 17],
+    ["Ne", "Neon", 0, 1, 1, 0, 18],
+    ["Na", "Sodium", 1, 0, 1, 0, 1],
+    ["Mg", "Magnesium", 1, 0, 1, 0, 2],
+    ["Al", "Aluminium", 1, 0, 1, 0, 13],
+    ["Si", "Silicon", 0, 0, 1, 0, 14],
+    ["P", "Phosphorus", 0, 0, 1, 0, 15],
+    ["S", "Sulfur", 0, 0, 1, 0, 16],
+    ["Cl", "Chlorine", 0, 0, 1, 0, 17],
+    ["Ar", "Argon", 0, 1, 1, 0, 18],
+    ["K", "Potassium", 1, 0, 1, 0, 1],
+    ["Ca", "Calcium", 1, 0, 1, 0, 2],
+    ["Sc", "Scandium", 1, 0, 1, 0, 3],
+    ["Ti", "Titanium", 1, 0, 1, 0, 4],
+    ["V", "Vanadium", 1, 0, 1, 0, 5],
+    ["Cr", "Chromium", 1, 0, 1, 0, 6],
+    ["Mn", "Manganese", 1, 0, 1, 0, 7],
+    ["Fe", "Iron", 1, 0, 1, 0, 8],
+    ["Co", "Cobalt", 1, 0, 1, 0, 9],
+    ["Ni", "Nickel", 1, 0, 1, 0, 10],
+    ["Cu", "Copper", 1, 0, 1, 0, 11],
+    ["Zn", "Zinc", 1, 0, 1, 0, 12],
+    ["Ga", "Gallium", 1, 0, 1, 0, 13],
+    ["Ge", "Germanium", 0, 0, 1, 0, 14],
+    ["As", "Arsenic", 0, 0, 1, 0, 15],
+    ["Se", "Selenium", 0, 0, 1, 0, 16],
+    ["Br", "Bromine", 0, 0, 1, 0, 17],
+    ["Kr", "Krypton", 0, 1, 1, 0, 18],
+    ["Rb", "Rubidium", 1, 0, 1, 0, 1],
+    ["Sr", "Strontium", 1, 0, 1, 0, 2],
+    ["Y", "Yttrium", 1, 0, 1, 0, 3],
+    ["Zr", "Zirconium", 1, 0, 1, 0, 4],
+    ["Nb", "Niobium", 1, 0, 1, 0, 5],
+    ["Mo", "Molybdenum", 1, 0, 1, 0, 6],
+    ["Tc", "Technetium", 1, 0, 0, 1, 7],
+    ["Ru", "Ruthenium", 1, 0, 1, 0, 8],
+    ["Rh", "Rhodium", 1, 0, 1, 0, 9],
+    ["Pd", "Palladium", 1, 0, 1, 0, 10],
+    ["Ag", "Silver", 1, 0, 1, 0, 11],
+    ["Cd", "Cadmium", 1, 0, 1, 0, 12],
+    ["In", "Indium", 1, 0, 1, 0, 13],
+    ["Sn", "Tin", 1, 0, 1, 0, 14],
+    ["Sb", "Antimony", 0, 0, 1, 0, 15],
+    ["Te", "Tellurium", 0, 0, 1, 0, 16],
+    ["I", "Iodine", 0, 0, 1, 0, 17],
+    ["Xe", "Xenon", 0, 1, 1, 0, 18],
+    ["Cs", "Cesium", 1, 0, 1, 0, 1],
+    ["Ba", "Barium", 1, 0, 1, 0, 2],
+    ["La", "Lanthanum", 1, 0, 1, 0, 3],
+    ["Ce", "Cerium", 1, 0, 1, 0, 3],
+    ["Pr", "Praseodymium", 1, 0, 1, 0, 3],
+    ["Nd", "Neodymium", 1, 0, 1, 0, 3],
+    ["Pm", "Promethium", 1, 0, 0, 1, 3],
+    ["Sm", "Samarium", 1, 0, 1, 0, 3],
+    ["Eu", "Europium", 1, 0, 1, 0, 3],
+    ["Gd", "Gadolinium", 1, 0, 1, 0, 3],
+    ["Tb", "Terbium", 1, 0, 1, 0, 3],
+    ["Dy", "Dysprosium", 1, 0, 1, 0, 3],
+    ["Ho", "Holmium", 1, 0, 1, 0, 3],
+    ["Er", "Erbium", 1, 0, 1, 0, 3],
+    ["Tm", "Thulium", 1, 0, 1, 0, 3],
+    ["Yb", "Ytterbium", 1, 0, 1, 0, 3],
+    ["Lu", "Lutetium", 1, 0, 1, 0, 3],
+    ["Hf", "Hafnium", 1, 0, 1, 0, 4],
+    ["Ta", "Tantalum", 1, 0, 1, 0, 5],
+    ["W", "Tungsten", 1, 0, 1, 0, 6],
+    ["Re", "Rhenium", 1, 0, 1, 0, 7],
+    ["Os", "Osmium", 1, 0, 1, 0, 8],
+    ["Ir", "Iridium", 1, 0, 1, 0, 9],
+    ["Pt", "Platinum", 1, 0, 1, 0, 10],
+    ["Au", "Gold", 1, 0, 1, 0, 11],
+    ["Hg", "Mercury", 1, 0, 1, 0, 12],
+    ["Tl", "Thallium", 1, 0, 1, 0, 13],
+    ["Pb", "Lead", 1, 0, 1, 0, 14],
+    ["Bi", "Bismuth", 1, 0, 1, 0, 15],
+    ["Po", "Polonium", 1, 0, 1, 1, 16],
+    ["At", "Astatine", 0, 0, 1, 1, 17],
+    ["Rn", "Radon", 0, 1, 1, 1, 18],
+    ["Fr", "Francium", 1, 0, 1, 1, 1],
+    ["Ra", "Radium", 1, 0, 1, 1, 2],
+    ["Ac", "Actinium", 1, 0, 1, 1, 3],
+    ["Th", "Thorium", 1, 0, 1, 1, 3],
+    ["Pa", "Protactinium", 1, 0, 1, 1, 3],
+    ["U", "Uranium", 1, 0, 1, 1, 3],
+    ["Np", "Neptunium", 1, 0, 1, 1, 3],
+    ["Pu", "Plutonium", 1, 0, 1, 1, 3],
+    ["Am", "Americium", 1, 0, 0, 1, 3],
+    ["Cm", "Curium", 1, 0, 0, 1, 3],
+    ["Bk", "Berkelium", 1, 0, 0, 1, 3],
+    ["Cf", "Californium", 1, 0, 0, 1, 3],
+    ["Es", "Einsteinium", 1, 0, 0, 1, 3],
+    ["Fm", "Fermium", 1, 0, 0, 1, 3]
+];
+
 const CLUES = {
 
     oddEven: {
@@ -1605,8 +1709,89 @@ lengthOfPrimeFactorisation: {
 
         return count;
     }
-}
+},
 
+isMetal: {
+    name: "Element Is a Metal?",
+    cost: 1,
+    category: "green",
+    fn(n) {
+        return ELEMENTS[n - 1][2] ? "Yes" : "No";
+    }
+},
+
+isNobleGas: {
+    name: "Element Is a Noble Gas?",
+    cost: 1,
+    category: "cyan",
+    fn(n) {
+        return ELEMENTS[n - 1][3] ? "Yes" : "No";
+    }
+},
+
+symbolMismatch: {
+    name: "Symbol's First Letter ≠ Name's First Letter?",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+        const [sym, name] = ELEMENTS[n - 1];
+        return sym[0].toUpperCase() !== name[0].toUpperCase() ? "Yes" : "No";
+    }
+},
+
+elementStartingLetter: {
+    name: "Element Starting Letter",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+        return ELEMENTS[n - 1][1][0].toUpperCase();
+    }
+},
+
+elementSuffix: {
+    name: "Element Suffix",
+    cost: 1,
+    category: "cyan",
+    fn(n) {
+        return ELEMENTS[n - 1][1].slice(-3);
+    }
+},
+
+elementNameLength: {
+    name: "Letters in Element Name",
+    cost: 1,
+    category: "pink",
+    fn(n) {
+        return ELEMENTS[n - 1][1].length;
+    }
+},
+
+isNaturallyOccurring: {
+    name: "Element Found in Nature?",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return ELEMENTS[n - 1][4] ? "Yes" : "No";
+    }
+},
+
+groupNumber: {
+    name: "Periodic Table Group Number",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        return ELEMENTS[n - 1][6];
+    }
+},
+
+isRadioactive: {
+    name: "Element Is Radioactive?",
+    cost: 1,
+    category: "orange",
+    fn(n) {
+        return ELEMENTS[n - 1][5] ? "Yes" : "No";
+    }
+}
 
 };
 

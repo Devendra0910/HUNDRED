@@ -184,6 +184,20 @@
 
 }
 
+.resultPercentile{
+
+    text-align:center;
+
+    margin:-10px 0 20px;
+
+    color:#F6C445;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
 .resultActions {
 
     display: flex;

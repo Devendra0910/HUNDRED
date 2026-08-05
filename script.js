@@ -1,7 +1,7 @@
 let CURRENT_LEVEL = 1;
 let LEVEL = LEVELS[CURRENT_LEVEL];
 
-const MAX_LEVEL = 11;
+const MAX_LEVEL = 12;
 
 function loadBestScore(levelNumber) {
     const raw = localStorage.getItem(`hundred_bestScore_level_${levelNumber}`);
@@ -173,6 +173,14 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
     console.log("endGame called:", reason);
 
+    if (typeof gtag === "function") {
+        gtag("event", reason === "completed" ? "level_complete" : "level_failed", {
+            level: CURRENT_LEVEL,
+            solved: solved,
+            coins_left: coins
+        });
+    }
+
     buyCluesSection.style.display = "none";
     clueContainer.innerHTML = "";
     //revealed.innerHTML = "";
@@ -275,6 +283,7 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
         const isNewBest = saveBestScore(CURRENT_LEVEL, coins);
         const bestScore = loadBestScore(CURRENT_LEVEL);
+        const scorePercentile = computePercentile(CURRENT_LEVEL, coins);
 
     message.innerHTML = `
         <div class="resultCard">
@@ -301,6 +310,12 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
                 </div>
 
             </div>
+
+            ${scorePercentile !== null ? `
+                <div class="resultPercentile">
+                    📊 This score is better than ${scorePercentile}% of players
+                </div>
+            ` : ""}
 
             <div class="resultActions">
 
@@ -354,12 +369,13 @@ function showHome() {
     "Binary",
     "Divisors",
     "Prime",
-    "Special Numbers"
+    "Special Numbers",
+    "Atomic Number"
 ];
 
 const levelIcons = [
     "🌱","🔤","🔢","🔄","⚖️",
-    "💎","🏛️","💻","➗","🔶","✨"
+    "💎","🏛️","💻","➗","🔶","✨","⚛️"
 ];
 
 let levelButtons = "";
@@ -481,6 +497,10 @@ function startLevel(levelNumber) {
 
     CURRENT_LEVEL = levelNumber;
     LEVEL = LEVELS[levelNumber];
+
+    if (typeof gtag === "function") {
+        gtag("event", "level_start", { level: levelNumber });
+    }
 
     levelTitle.textContent = `Level ${CURRENT_LEVEL}`;
 

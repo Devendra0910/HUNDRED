@@ -662,6 +662,65 @@ const LEVELS = {
 
     },
 
+    12: {
+
+    id: 12,
+
+    name: "Atomic Number",
+
+    description: "Identify the hidden number using its identity as a chemical element.",
+
+    difficulty: 12,
+
+    category: "Chemistry",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "atomic",
+
+    background: "atomic",
+
+    music: "atomic",
+
+    unlockRequirement: {
+        level: 11
+    },
+
+    clues: [
+
+        "isMetal",
+
+        "elementStartingLetter",
+
+        "elementSuffix",
+
+        "elementNameLength",
+
+        "groupNumber",
+
+        "isRadioactive"
+
+    ]
+
+    },
+
 
 
 };
