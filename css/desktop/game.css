@@ -1,3 +1,36 @@
+.gameHeader{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:16px;
+
+}
+
+#muteButton{
+
+    background:rgba(255,255,255,0.9);
+    border:2px solid #dfe4ea;
+    border-radius:999px;
+
+    width:44px;
+    height:44px;
+
+    font-size:20px;
+
+    cursor:pointer;
+    transition:.2s;
+
+}
+
+#muteButton:hover{
+    background:white;
+    border-color:#c5cbd3;
+}
+
 .statusPanel{
 
     display:flex;
@@ -7,6 +40,88 @@
     gap:8px;
 
     margin-bottom:16px;
+
+}
+
+.coinsAndBest{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+}
+
+.coinPanel{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    background:rgba(255,255,255,0.9);
+    border:2px solid #dfe4ea;
+    border-radius:999px;
+
+    padding:10px 20px;
+
+    font-size:22px;
+    font-weight:800;
+    color:#1f2633;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+}
+
+.bestScorePanel{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:linear-gradient(135deg, #fff8e1, #ffecb3);
+    border:2px solid #F6C445;
+    border-radius:999px;
+
+    padding:8px 20px 8px 16px;
+
+    box-shadow:0 4px 16px rgba(246,196,69,.35);
+
+}
+
+.bestScorePanel .bestScoreText{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.bestScorePanel .trophyIcon{
+
+    font-size:24px;
+    filter:drop-shadow(0 0 6px rgba(246,196,69,.7));
+
+}
+
+.bestScorePanel .bestScoreLabel{
+
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#8a6d00;
+    line-height:1.1;
+
+}
+
+.bestScorePanel .bestScoreValue{
+
+    font-size:22px;
+    font-weight:900;
+    color:#6b4f00;
+    line-height:1.1;
 
 }
 

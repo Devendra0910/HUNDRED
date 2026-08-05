@@ -15,12 +15,38 @@
 
     }
 
+    #muteButton{
+
+        background:white;
+        border:2px solid #dfe4ea;
+        border-radius:999px;
+
+        width:38px;
+        height:38px;
+
+        font-size:16px;
+
+        cursor:pointer;
+
+    }
+
     .statusPanel{
 
         display:grid;
         grid-template-columns:auto 1fr auto;
         align-items:center;
         gap:12px;
+
+    }
+
+    .coinsAndBest{
+
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:4px;
+
+        flex-shrink:0;
 
     }
 
@@ -38,6 +64,54 @@
 
         font-size:22px;
         font-weight:bold;
+
+    }
+
+    .bestScorePanel{
+
+        display:flex;
+        align-items:center;
+        gap:6px;
+
+        background:linear-gradient(135deg, #fff8e1, #ffecb3);
+        border:2px solid #F6C445;
+        border-radius:999px;
+
+        padding:6px 14px 6px 10px;
+
+        box-shadow:0 3px 10px rgba(246,196,69,.35);
+
+    }
+
+    .bestScorePanel .trophyIcon{
+
+        font-size:16px;
+
+    }
+
+    .bestScorePanel .bestScoreText{
+
+        display:flex;
+        flex-direction:column;
+        line-height:1.1;
+
+    }
+
+    .bestScorePanel .bestScoreLabel{
+
+        font-size:9px;
+        font-weight:800;
+        letter-spacing:.05em;
+        text-transform:uppercase;
+        color:#8a6d00;
+
+    }
+
+    .bestScorePanel .bestScoreValue{
+
+        font-size:16px;
+        font-weight:900;
+        color:#6b4f00;
 
     }
 

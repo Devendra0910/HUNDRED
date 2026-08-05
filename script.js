@@ -75,6 +75,7 @@ const gameScreen = document.getElementById("gameScreen");
 
 const homeButton = document.getElementById("homeButton");
 const levelTitle = document.querySelector(".levelTitle");
+const muteButton = document.getElementById("muteButton");
 
 //=====================
 // GAME STATE
@@ -130,6 +131,8 @@ function shuffle(array){
 const clueContainer=document.getElementById("clueContainer");
 //const revealed=document.getElementById("revealedClues");
 const coinsText=document.getElementById("coins");
+const bestScorePanel=document.getElementById("bestScorePanel");
+const bestScoreDisplay=document.getElementById("bestScoreDisplay");
 const message=document.getElementById("message");
 const guessInput=document.getElementById("guessInput");
 const guessButton=document.getElementById("guessButton");
@@ -140,6 +143,12 @@ guessButton.addEventListener("click",guess);
 nextButton.addEventListener("click",nextRound);
 
 homeButton.addEventListener("click", showHome);
+
+muteButton.textContent = SOUND.isMuted() ? "🔇" : "🔊";
+muteButton.addEventListener("click", () => {
+    const muted = SOUND.toggleMuted();
+    muteButton.textContent = muted ? "🔇" : "🔊";
+});
 
 
 //=====================
@@ -299,6 +308,8 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
         const isNewBest = saveBestScore(CURRENT_LEVEL, coins);
         const bestScore = loadBestScore(CURRENT_LEVEL);
         const scorePercentile = computePercentile(CURRENT_LEVEL, coins);
+
+        isNewBest ? SOUND.newBest() : SOUND.levelComplete();
 
     message.innerHTML = `
         <div class="resultCard won">
@@ -527,6 +538,14 @@ function startLevel(levelNumber) {
 
     levelTitle.textContent = `Level ${CURRENT_LEVEL}`;
 
+    const existingBest = loadBestScore(levelNumber);
+    if (existingBest !== null) {
+        bestScoreDisplay.textContent = existingBest;
+        bestScorePanel.style.display = "flex";
+    } else {
+        bestScorePanel.style.display = "none";
+    }
+
     // Reset state
     coins = LEVEL.startingCoins;
     solved = 0;
@@ -599,8 +618,11 @@ function guess(){
 
         }
 
+        SOUND.correct();
+
     }else{
 
+      SOUND.wrong();
       updateStats();
       //message.innerHTML = `❌ Wrong! The correct answer was <b>${currentNumber}</b>.`;
       endGame("wrong", currentNumber, value);
@@ -647,6 +669,8 @@ function buyClue(type){
         return;
 
     }
+
+    SOUND.clueBuy();
 
     // Pay
     coins -= clueCosts[type];

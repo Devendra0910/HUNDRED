@@ -45,6 +45,8 @@
             <div class="levelTitle">
               Level 1
            </div>
+
+            <button id="muteButton" title="Toggle sound">🔊</button>
         </div>
 
         <div class="objective">
@@ -53,8 +55,18 @@
 
 
         <div class="statusPanel">
-            <div class="coinPanel">
-              💰 <span id="coins">40</span>
+            <div class="coinsAndBest">
+                <div class="coinPanel">
+                  💰 <span id="coins">40</span>
+                </div>
+
+                <div class="bestScorePanel" id="bestScorePanel" style="display:none;">
+                  <span class="trophyIcon">🏆</span>
+                  <span class="bestScoreText">
+                    <span class="bestScoreLabel">Best Score</span>
+                    <span class="bestScoreValue" id="bestScoreDisplay">--</span>
+                  </span>
+                </div>
             </div>
 
             <div class="progressContainer">
@@ -108,6 +120,7 @@
 <script src="clues.js"></script>
 <script src="levels.js"></script>
 <script src="percentileData.js"></script>
+<script src="sounds.js"></script>
 <script src="script.js"></script>
 
 </body>
