@@ -216,14 +216,23 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
     }
 
+    const cluesSection = `
+        <div class="sectionLabel">🔍 Clues Used This Question</div>
+
+        ${clueHistory || `
+            <div class="noClues">
+            No clues purchased
+            </div>
+            `}
+    `;
+
     if (reason === "wrong") {
 
       message.innerHTML = `
-          <div class="resultCard">
+          <div class="resultCard lost">
 
-          <h2 class="resultTitle">❌ Round Lost</h2>
-
-          
+          <h2 class="resultTitle"><span class="gameOverIcon">❌</span> Game Over</h2>
+          <p class="resultSubtitle">Wrong guess — the number was ${answer}.</p>
 
           <div class="answerCompare">
 
@@ -236,30 +245,11 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
               <div class="answerBox correct">
               <div class="answerNumber">${answer}</div>
-              <div class="answerLabel">Correct</div>
+              <div class="answerLabel">Correct Answer</div>
             </div>
 
           </div>
 
-
-          <hr>
-
-          <div class="resultActions">
-              <button id="restartButton">
-                  🔄 Play Again
-              </button>
-          </div>
-
-          <h3>Clues Purchased</h3>
-
-          ${clueHistory || `
-            <div class="noClues">
-            🔍 No clues purchased
-            </div>
-            `}
-
-          <hr>
-          
           <div class="resultStats">
 
             <div class="statCard">
@@ -274,6 +264,17 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
 
           </div>
 
+          <div class="resultDivider"></div>
+
+          ${cluesSection}
+
+          <div class="resultDivider"></div>
+
+          <div class="resultActions">
+              <button id="restartButton">
+                  🔄 Play Again
+              </button>
+          </div>
 
           </div>
       `;
@@ -292,9 +293,10 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
         const scorePercentile = computePercentile(CURRENT_LEVEL, coins);
 
     message.innerHTML = `
-        <div class="resultCard">
+        <div class="resultCard won">
 
             <h2 class="resultTitle">🎉 Level Complete!</h2>
+            <p class="resultSubtitle">You solved all ${LEVEL.questions} hidden numbers.</p>
 
             <div class="resultStats">
 
@@ -322,6 +324,12 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
                     📊 This score is better than ${scorePercentile}% of players
                 </div>
             ` : ""}
+
+            <div class="resultDivider"></div>
+
+            ${cluesSection}
+
+            <div class="resultDivider"></div>
 
             <div class="resultActions">
 

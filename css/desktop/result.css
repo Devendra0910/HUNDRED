@@ -23,9 +23,74 @@
 
 }
 
+.resultCard.lost .resultTitle{
+
+    color:#ff5c68;
+    font-size:40px;
+    font-weight:800;
+    text-shadow:0 0 24px rgba(255,92,104,.6);
+    animation:gameOverShake .5s ease;
+
+}
+
+.gameOverIcon{
+
+    display:inline-block;
+    font-size:52px;
+    vertical-align:middle;
+    margin-right:6px;
+    filter:drop-shadow(0 0 14px rgba(255,92,104,.7));
+
+}
+
+@keyframes gameOverShake{
+    0%,100%{ transform:translateX(0); }
+    20%{ transform:translateX(-6px); }
+    40%{ transform:translateX(6px); }
+    60%{ transform:translateX(-4px); }
+    80%{ transform:translateX(4px); }
+}
+
+.resultSubtitle{
+
+    margin:6px 0 0;
+    text-align:center;
+    color:#aab5c6;
+    font-size:15px;
+
+}
+
 .resultCard {
     max-height: 85vh;
     overflow-y: auto;
+}
+
+.resultCard.won{
+    border-color:#2f855a;
+}
+
+.resultCard.lost{
+    border-color:#7f2532;
+}
+
+.sectionLabel{
+
+    margin:0 0 12px;
+    color:#aab5c6;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+
+}
+
+.resultDivider{
+
+    height:1px;
+    background:#3d4d63;
+    border:none;
+    margin:24px 0;
+
 }
 
 
