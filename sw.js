@@ -1,4 +1,4 @@
-const CACHE_NAME = "hundred-cache-v1";
+const CACHE_NAME = "hundred-cache-v2";
 
 const CORE_ASSETS = [
   "./",
@@ -7,6 +7,7 @@ const CORE_ASSETS = [
   "./clues.js",
   "./levels.js",
   "./percentileData.js",
+  "./sounds.js",
   "./css/style.css",
   "./manifest.json",
   "./assets/icons/icon-192.png",
