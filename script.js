@@ -1,5 +1,6 @@
 let CURRENT_LEVEL = 1;
 let LEVEL = LEVELS[CURRENT_LEVEL];
+let levelStartTime = null;
 
 const MAX_LEVEL = 12;
 
@@ -174,10 +175,15 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
     console.log("endGame called:", reason);
 
     if (typeof gtag === "function") {
+        const durationSeconds = levelStartTime !== null
+            ? Math.round((Date.now() - levelStartTime) / 1000)
+            : null;
+
         gtag("event", reason === "completed" ? "level_complete" : "level_failed", {
             level: CURRENT_LEVEL,
             solved: solved,
-            coins_left: coins
+            coins_left: coins,
+            duration_seconds: durationSeconds
         });
     }
 
@@ -497,6 +503,7 @@ function startLevel(levelNumber) {
 
     CURRENT_LEVEL = levelNumber;
     LEVEL = LEVELS[levelNumber];
+    levelStartTime = Date.now();
 
     if (typeof gtag === "function") {
         gtag("event", "level_start", { level: levelNumber });
