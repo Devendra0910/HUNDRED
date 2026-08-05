@@ -46,7 +46,7 @@ const SOUND = (() => {
 
     return {
         clueBuy() {
-            play([[880, 0, 0.08, "square", 0.12]]);
+            play([[660, 0, 0.07, "sine", 0.1]]);
         },
         correct() {
             play([
