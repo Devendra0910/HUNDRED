@@ -25,9 +25,34 @@
 
         font-size:14px;
 
-        margin:16px 0 24px;
+        margin:16px 0 14px;
 
         padding:0 10px;
+
+    }
+
+    .totalScoreBadge{
+
+        padding:8px 20px 8px 14px;
+        margin:0 auto 24px auto;
+
+    }
+
+    .totalScoreIcon{
+
+        font-size:22px;
+
+    }
+
+    .totalScoreLabel{
+
+        font-size:10px;
+
+    }
+
+    .totalScoreValue{
+
+        font-size:20px;
 
     }
 

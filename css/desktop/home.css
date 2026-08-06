@@ -213,7 +213,60 @@
 
     text-align:center;
 
-    margin:60px auto 50px auto;
+    margin:60px auto 30px auto;
+
+}
+
+.totalScoreBadge{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    width:fit-content;
+    margin:0 auto 30px auto;
+
+    background:linear-gradient(135deg, #fff8e1, #ffecb3);
+    border:2px solid #F6C445;
+    border-radius:999px;
+
+    padding:12px 28px 12px 20px;
+
+    box-shadow:0 6px 20px rgba(246,196,69,.4);
+
+}
+
+.totalScoreIcon{
+
+    font-size:30px;
+    filter:drop-shadow(0 0 8px rgba(246,196,69,.7));
+
+}
+
+.totalScoreText{
+
+    display:flex;
+    flex-direction:column;
+    line-height:1.15;
+
+}
+
+.totalScoreLabel{
+
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#8a6d00;
+
+}
+
+.totalScoreValue{
+
+    font-size:28px;
+    font-weight:900;
+    color:#6b4f00;
 
 }
 

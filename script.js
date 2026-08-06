@@ -412,6 +412,12 @@ const levelIcons = [
     "💎","🏛️","💻","➗","🔶","✨","⚛️","📡"
 ];
 
+let totalScore = 0;
+for (let i = 1; i <= MAX_LEVEL; i++) {
+    const best = loadBestScore(i);
+    if (best !== null) totalScore += best;
+}
+
 let levelButtons = "";
 
 for (let i = 1; i <= MAX_LEVEL; i++) {
@@ -505,6 +511,16 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
               <p class="tagline">
                  Deduce • Discover • Master
               </p>
+
+              ${totalScore > 0 ? `
+                  <div class="totalScoreBadge">
+                      <span class="totalScoreIcon">🏆</span>
+                      <span class="totalScoreText">
+                          <span class="totalScoreLabel">Total Score</span>
+                          <span class="totalScoreValue">${totalScore}</span>
+                      </span>
+                  </div>
+              ` : ""}
 
               ${tutorialHtml}
 
