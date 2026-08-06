@@ -721,6 +721,65 @@ const LEVELS = {
 
     },
 
+    13: {
+
+    id: 13,
+
+    name: "Morse Code",
+
+    description: "Identify the hidden number using its Morse code signal pattern.",
+
+    difficulty: 13,
+
+    category: "Morse",
+
+    deckStart: 1,
+    deckEnd: 100,
+
+    questions: 5,
+
+    startingCoins: 40,
+
+    clueCostMultiplier: 1,
+    clueCostIncrement: 1,
+
+    allowRepeatedNumbers: false,
+
+    coinsPerCorrect: 0,
+    coinsPerWrong: 0,
+
+    bonusPerUnusedCoin: 0,
+
+    scorePerCorrect: 1,
+
+    theme: "telegraph",
+
+    background: "telegraph",
+
+    music: "telegraph",
+
+    unlockRequirement: {
+        level: 12
+    },
+
+    clues: [
+
+        "morseTotalDots",
+
+        "morseFirstSymbolDot",
+
+        "morseLastSymbolDot",
+
+        "morseReverseDecode",
+
+        "morseLongestDashRun",
+
+        "morseLastDigitDots"
+
+    ]
+
+    },
+
 
 
 };

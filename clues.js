@@ -25,6 +25,12 @@ function gcd(a, b) {
     return a;
 }
 
+const MORSE_DIGITS = ["-----",".----","..---","...--","....-",".....","-....","--...","---..","----."];
+
+function toMorse(n) {
+    return String(n).split("").map(d => MORSE_DIGITS[Number(d)]).join("");
+}
+
 
 // [symbol, name, isMetal, isNobleGas, isNaturallyOccurring, isRadioactive, groupNumber, atomicMass]
 const ELEMENTS = [
@@ -1799,6 +1805,89 @@ isRadioactive: {
     category: "orange",
     fn(n) {
         return ELEMENTS[n - 1][5] ? "Yes" : "No";
+    }
+},
+
+morseTotalDots: {
+    name: "Total Dots in Morse Code",
+    cost: 1,
+    category: "blue",
+    fn(n) {
+        return toMorse(n).split("").filter(c => c === ".").length;
+    }
+},
+
+morseFirstSymbolDot: {
+    name: "First Morse Symbol Is a Dot?",
+    cost: 1,
+    category: "green",
+    fn(n) {
+        return toMorse(n)[0] === "." ? "Yes" : "No";
+    }
+},
+
+morseLastSymbolDot: {
+    name: "Last Morse Symbol Is a Dot?",
+    cost: 1,
+    category: "cyan",
+    fn(n) {
+        const code = toMorse(n);
+        return code[code.length - 1] === "." ? "Yes" : "No";
+    }
+},
+
+morseLongestDotRun: {
+    name: "Longest Dot Streak in Morse Code",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+        const code = toMorse(n);
+        let max = 0, cur = 0;
+        for (const c of code) {
+            if (c === ".") { cur++; max = Math.max(max, cur); }
+            else cur = 0;
+        }
+        return max;
+    }
+},
+
+morseLongestDashRun: {
+    name: "Longest Dash Streak in Morse Code",
+    cost: 1,
+    category: "red",
+    fn(n) {
+        const code = toMorse(n);
+        let max = 0, cur = 0;
+        for (const c of code) {
+            if (c === "-") { cur++; max = Math.max(max, cur); }
+            else cur = 0;
+        }
+        return max;
+    }
+},
+
+morseLastDigitDots: {
+    name: "Dots in Units Digit's Morse Code",
+    cost: 1,
+    category: "brown",
+    fn(n) {
+        const unitsDigit = n % 10;
+        return MORSE_DIGITS[unitsDigit].split("").filter(c => c === ".").length;
+    }
+},
+
+morseReverseDecode: {
+    name: "Number Decoded from Reversed Morse Code",
+    cost: 1,
+    category: "purple",
+    fn(n) {
+        const reversed = toMorse(n).split("").reverse().join("");
+        const chunks = [];
+        for (let i = 0; i < reversed.length; i += 5) {
+            chunks.push(reversed.slice(i, i + 5));
+        }
+        const digits = chunks.map(code => MORSE_DIGITS.indexOf(code));
+        return parseInt(digits.join(""), 10);
     }
 }
 

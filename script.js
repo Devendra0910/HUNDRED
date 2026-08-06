@@ -2,7 +2,7 @@ let CURRENT_LEVEL = 1;
 let LEVEL = LEVELS[CURRENT_LEVEL];
 let levelStartTime = null;
 
-const MAX_LEVEL = 12;
+const MAX_LEVEL = 13;
 
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -403,12 +403,13 @@ function showHome() {
     "Divisors",
     "Prime",
     "Special Numbers",
-    "Atomic Number"
+    "Atomic Number",
+    "Morse Code"
 ];
 
 const levelIcons = [
     "🌱","🔤","🔢","🔄","⚖️",
-    "💎","🏛️","💻","➗","🔶","✨","⚛️"
+    "💎","🏛️","💻","➗","🔶","✨","⚛️","📡"
 ];
 
 let levelButtons = "";
