@@ -120,7 +120,7 @@ function printBenchmark(simulator, ai) {
 
 }*/
 
-const LEVEL_NUMBER = 10;
+const LEVEL_NUMBER = 12;
 
 const TEST_LEVEL = LEVELS[LEVEL_NUMBER];
 

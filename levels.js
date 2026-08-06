@@ -715,7 +715,7 @@ const LEVELS = {
 
         "groupNumber",
 
-        "isRadioactive"
+        "atomicMassRounded"
 
     ]
 
