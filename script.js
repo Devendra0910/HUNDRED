@@ -91,7 +91,7 @@ const muteButton = document.getElementById("muteButton");
 let coins = LEVEL.startingCoins;
 let solved = 0;
 
-const GRID_COST = 3;
+const GRID_COST = 2;
 let gridUnlocked = false;
 
 const clueCosts = {};
@@ -606,7 +606,7 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 
             <div class="tutorialStep">
                 <span class="tutorialIcon">🔍</span>
-                <span>You can pay 3 coins each question to reveal the grid of numbers still possible.</span>
+                <span>You can pay 2 coins each question to reveal the grid of numbers still possible.</span>
             </div>
 
             <div class="tutorialStep">
