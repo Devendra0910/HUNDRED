@@ -103,10 +103,12 @@
 
 .lockedLevelContent {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 6px;
     width: 100%;
+    text-align: center;
 }
 
 .lockedLevelContent .levelIcon {
@@ -118,6 +120,12 @@
     font-size: 17px;
     font-weight: 700;
     color: white;
+}
+
+.lockedLevelRequirement {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .tutorialCard {

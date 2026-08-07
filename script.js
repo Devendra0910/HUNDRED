@@ -502,7 +502,9 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 
     const bestScore = loadBestScore(i);
     const completed = bestScore !== null;
-    const locked = completedLevels < requiredCompletedLevels(i);
+    const required = requiredCompletedLevels(i);
+    const locked = completedLevels < required;
+    const remaining = required - completedLevels;
     const percentile = computePercentile(i, bestScore);
 
     levelButtons += `
@@ -518,6 +520,9 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
                     <div class="lockedLevelContent">
                         <div class="levelIcon">🔒</div>
                         <div class="lockedLevelName">Level ${i}</div>
+                        <div class="lockedLevelRequirement">
+                            Complete ${remaining} more level${remaining === 1 ? "" : "s"} to unlock
+                        </div>
                     </div>
                 `
                 : `
