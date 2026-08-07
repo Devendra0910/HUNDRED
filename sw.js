@@ -1,4 +1,4 @@
-const CACHE_NAME = "hundred-cache-v14";
+const CACHE_NAME = "hundred-cache-v15";
 
 const CORE_ASSETS = [
   "./",

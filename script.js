@@ -91,6 +91,8 @@ const muteButton = document.getElementById("muteButton");
 let coins = LEVEL.startingCoins;
 let solved = 0;
 
+let tutorialForcedOpen = false;
+
 const GRID_COST = 2;
 let gridUnlocked = false;
 
@@ -589,7 +591,7 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 `;
 }
 
-    const tutorialHtml = completedLevels === 0 ? `
+    const tutorialHtml = (completedLevels === 0 || tutorialForcedOpen) ? `
         <div class="tutorialCard">
 
             <h3 class="tutorialTitle">👋 How to Play</h3>
@@ -641,6 +643,12 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
                   </div>
               ` : ""}
 
+              ${completedLevels > 0 ? `
+                  <button class="howToPlayButton" id="howToPlayToggle">
+                      ${tutorialForcedOpen ? "✕ Close" : "❓ How to Play"}
+                  </button>
+              ` : ""}
+
               ${tutorialHtml}
 
               <div class="levelGrid">
@@ -658,7 +666,14 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 
 });
 
+const howToPlayToggle = document.getElementById("howToPlayToggle");
 
+if (howToPlayToggle) {
+    howToPlayToggle.addEventListener("click", () => {
+        tutorialForcedOpen = !tutorialForcedOpen;
+        showHome();
+    });
+}
 
 }
 
