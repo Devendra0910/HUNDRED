@@ -57,15 +57,22 @@ function computePercentile(levelNumber, bestScore) {
     return Math.min(100, Math.max(0, percentileBeaten));
 }
 
-function loadUnlockedLevel() {
-    return Number(localStorage.getItem("unlockedLevel") || 1);
+function countCompletedLevels() {
+    let count = 0;
+    for (let i = 1; i <= MAX_LEVEL; i++) {
+        if (loadBestScore(i) !== null) count++;
+    }
+    return count;
 }
 
-function saveUnlockedLevel(level) {
-    localStorage.setItem("unlockedLevel", level);
+// Levels 1-5 are free. From level 6 on, each level needs one more
+// completed level than the last, except every 5th level plateaus
+// (repeats the previous requirement) as a breather.
+function requiredCompletedLevels(levelId) {
+    if (levelId <= 5) return 0;
+    const m = levelId - 6;
+    return m - Math.floor(m / 5) + 1;
 }
-
-let unlockedLevel = loadUnlockedLevel();
 
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
@@ -372,12 +379,6 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
     }
     else {
 
-        if (CURRENT_LEVEL < MAX_LEVEL && unlockedLevel < CURRENT_LEVEL + 1) {
-
-          unlockedLevel = CURRENT_LEVEL + 1;
-          saveUnlockedLevel(unlockedLevel);
-        }
-
         const isNewBest = saveBestScore(CURRENT_LEVEL, coins);
         const bestScore = loadBestScore(CURRENT_LEVEL);
         const scorePercentile = computePercentile(CURRENT_LEVEL, coins);
@@ -485,19 +486,23 @@ const levelIcons = [
     "💎","🏛️","💻","➗","🔶","✨","⚛️","📡"
 ];
 
+let completedLevels = 0;
 let totalScore = 0;
 for (let i = 1; i <= MAX_LEVEL; i++) {
     const best = loadBestScore(i);
-    if (best !== null) totalScore += best;
+    if (best !== null) {
+        totalScore += best;
+        completedLevels++;
+    }
 }
 
 let levelButtons = "";
 
 for (let i = 1; i <= MAX_LEVEL; i++) {
 
-    const locked = i > unlockedLevel;
-    const completed = i < unlockedLevel;
     const bestScore = loadBestScore(i);
+    const completed = bestScore !== null;
+    const locked = completedLevels < requiredCompletedLevels(i);
     const percentile = computePercentile(i, bestScore);
 
     levelButtons += `
@@ -548,7 +553,7 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
 `;
 }
 
-    const tutorialHtml = unlockedLevel === 1 ? `
+    const tutorialHtml = completedLevels === 0 ? `
         <div class="tutorialCard">
 
             <h3 class="tutorialTitle">👋 How to Play</h3>

@@ -49,12 +49,6 @@ const LEVELS = {
         music: "beginner",
 
         //==========================
-        // PROGRESSION
-        //==========================
-
-        unlockRequirement: null,
-
-        //==========================
         // CLUES
         //==========================
 
@@ -113,9 +107,6 @@ const LEVELS = {
 
     music: "desert",
 
-    unlockRequirement: {
-        level: 4
-    },
 
     clues: [
 
@@ -174,9 +165,6 @@ const LEVELS = {
 
     music: "mountain",
 
-    unlockRequirement: {
-        level: 8
-    },
 
     clues: [
 
@@ -227,9 +215,6 @@ const LEVELS = {
 
     music: "snow",
 
-    unlockRequirement: {
-        level: 5
-    },
 
     clues: [
 
@@ -285,9 +270,6 @@ const LEVELS = {
 
     music: "volcano",
 
-    unlockRequirement: {
-        level: 3
-    },
 
     clues: [
 
@@ -344,9 +326,6 @@ const LEVELS = {
 
     music: "library",
 
-    unlockRequirement: {
-        level: 1
-    },
 
     clues: [
 
@@ -403,9 +382,6 @@ const LEVELS = {
 
     music: "temple",
 
-    unlockRequirement: {
-        level: 6
-    },
 
     clues: [
 
@@ -462,9 +438,6 @@ const LEVELS = {
 
     music: "space",
 
-    unlockRequirement: {
-        level: 7
-    },
 
     clues: [
 
@@ -522,9 +495,6 @@ const LEVELS = {
 
     music: "city",
 
-    unlockRequirement: {
-        level: 2
-    },
 
     clues: [
 
@@ -581,9 +551,6 @@ const LEVELS = {
 
     music: "cave",
 
-    unlockRequirement: {
-        level: 9
-    },
 
     clues: [
 
@@ -640,9 +607,6 @@ const LEVELS = {
 
     music: "observatory",
 
-    unlockRequirement: {
-        level: 10
-    },
 
     clues: [
 
@@ -699,9 +663,6 @@ const LEVELS = {
 
     music: "atomic",
 
-    unlockRequirement: {
-        level: 11
-    },
 
     clues: [
 
@@ -758,9 +719,6 @@ const LEVELS = {
 
     music: "telegraph",
 
-    unlockRequirement: {
-        level: 12
-    },
 
     clues: [
 
