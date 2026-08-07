@@ -605,6 +605,11 @@ for (let i = 1; i <= MAX_LEVEL; i++) {
             </div>
 
             <div class="tutorialStep">
+                <span class="tutorialIcon">🔍</span>
+                <span>You can pay 3 coins each question to reveal the grid of numbers still possible.</span>
+            </div>
+
+            <div class="tutorialStep">
                 <span class="tutorialIcon">✅</span>
                 <span>Solve all questions before you run out of coins to win.</span>
             </div>
