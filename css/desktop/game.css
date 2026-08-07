@@ -325,6 +325,8 @@
 
     margin-bottom:20px;
 
+    padding:0;
+
 }
 
 .candidateHeader{
@@ -333,13 +335,33 @@
     align-items:center;
     justify-content:space-between;
 
-    margin-bottom:14px;
+    width:100%;
+
+    padding:16px 24px;
+
+    background:none;
+    border:none;
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-family:inherit;
 
 }
 
-.candidateHeader h2{
+.candidateTitle{
 
-    margin-bottom:0;
+    font-size:20px;
+    font-weight:700;
+    color:#1a202c;
+
+}
+
+.candidateHeaderRight{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
 
 }
 
@@ -356,6 +378,55 @@
 
 }
 
+.candidateChevron{
+
+    font-size:16px;
+    color:#8a94a6;
+
+    transition:transform .25s ease;
+
+}
+
+/* Collapsed by default; the count stays visible in the header. */
+.candidateGridWrap{
+
+    display:grid;
+    grid-template-rows:0fr;
+
+    transition:grid-template-rows .3s ease;
+
+}
+
+.candidateGridInner{
+
+    overflow:hidden;
+    min-height:0;
+
+}
+
+#candidateSection.expanded .candidateGridWrap{
+
+    grid-template-rows:1fr;
+
+}
+
+#candidateSection.expanded .candidateChevron{
+
+    transform:rotate(180deg);
+
+}
+
+/* Peek on hover, but only where hover actually exists (not touch). */
+@media (hover:hover) and (pointer:fine){
+
+    #candidateSection:hover .candidateGridWrap{
+
+        grid-template-rows:1fr;
+
+    }
+
+}
+
 .candidateGrid{
 
     display:grid;
@@ -364,6 +435,8 @@
 
     max-width:520px;
     margin:0 auto;
+
+    padding:0 24px 20px;
 
 }
 

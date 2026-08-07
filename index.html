@@ -104,12 +104,19 @@
 
       <div class="section" id="candidateSection">
 
-          <div class="candidateHeader">
-              <h2>Possible Numbers</h2>
-              <span id="candidateCount" class="candidateCount">100 left</span>
-          </div>
+          <button class="candidateHeader" id="candidateToggle" aria-expanded="false">
+              <span class="candidateTitle">🔍 Possible Numbers</span>
+              <span class="candidateHeaderRight">
+                  <span id="candidateCount" class="candidateCount">100 left</span>
+                  <span class="candidateChevron">▾</span>
+              </span>
+          </button>
 
-          <div id="candidateGrid" class="candidateGrid"></div>
+          <div class="candidateGridWrap">
+              <div class="candidateGridInner">
+                  <div id="candidateGrid" class="candidateGrid"></div>
+              </div>
+          </div>
 
       </div>
 

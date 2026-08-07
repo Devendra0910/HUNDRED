@@ -141,6 +141,18 @@ const buyCluesSection = document.getElementById("buyCluesSection");
 const candidateSection = document.getElementById("candidateSection");
 const candidateGrid = document.getElementById("candidateGrid");
 const candidateCount = document.getElementById("candidateCount");
+const candidateToggle = document.getElementById("candidateToggle");
+
+candidateToggle.addEventListener("click", () => {
+    const expanded = candidateSection.classList.toggle("expanded");
+    candidateToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    localStorage.setItem("hundred_gridExpanded", String(expanded));
+});
+
+if (localStorage.getItem("hundred_gridExpanded") === "true") {
+    candidateSection.classList.add("expanded");
+    candidateToggle.setAttribute("aria-expanded", "true");
+}
 
 guessButton.addEventListener("click",guess);
 nextButton.addEventListener("click",nextRound);
