@@ -138,6 +138,9 @@ const guessInput=document.getElementById("guessInput");
 const guessButton=document.getElementById("guessButton");
 const nextButton=document.getElementById("nextButton");
 const buyCluesSection = document.getElementById("buyCluesSection");
+const candidateSection = document.getElementById("candidateSection");
+const candidateGrid = document.getElementById("candidateGrid");
+const candidateCount = document.getElementById("candidateCount");
 
 guessButton.addEventListener("click",guess);
 nextButton.addEventListener("click",nextRound);
@@ -161,6 +164,63 @@ function updateStats(){
     const percent = solved / LEVEL.questions * 100;
     progressBar.style.width = percent + "%";
     progressText.textContent = `${solved} / ${LEVEL.questions} Complete`;
+}
+
+//=====================
+// CANDIDATE GRID
+//=====================
+
+function buildCandidateGrid(){
+
+    candidateGrid.innerHTML = "";
+
+    for (let n = LEVEL.deckStart; n <= LEVEL.deckEnd; n++) {
+
+        const cell = document.createElement("div");
+        cell.className = "candidateCell";
+        cell.dataset.number = n;
+        cell.textContent = n;
+
+        candidateGrid.appendChild(cell);
+    }
+
+    updateCandidateGrid();
+}
+
+// A number stays possible only if every purchased clue gives it
+// the same answer as the hidden number.
+function isStillPossible(n){
+
+    for (const key of LEVEL.clues) {
+
+        if (!purchasedClues[key]) continue;
+
+        if (CLUES[key].fn(n) !== CLUES[key].fn(currentNumber))
+            return false;
+    }
+
+    return true;
+}
+
+function updateCandidateGrid(){
+
+    if (currentNumber === null) return;
+
+    let remaining = 0;
+
+    candidateGrid.querySelectorAll(".candidateCell").forEach(cell => {
+
+        const n = Number(cell.dataset.number);
+
+        if (isStillPossible(n)) {
+            cell.classList.remove("eliminated");
+            remaining++;
+        } else {
+            cell.classList.add("eliminated");
+        }
+    });
+
+    candidateCount.textContent = `${remaining} left`;
 }
 
 //=====================
@@ -205,6 +265,7 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
     }
 
     buyCluesSection.style.display = "none";
+    candidateSection.style.display = "none";
     clueContainer.innerHTML = "";
     //revealed.innerHTML = "";
     guessButton.disabled = true;
@@ -599,12 +660,14 @@ function nextRound(){
     //revealed.innerHTML="No clues purchased.";
     message.textContent="";
     buyCluesSection.style.display = "block";
+    candidateSection.style.display = "block";
     guessInput.value="";
     guessButton.style.display = "inline-block";
     nextButton.style.display = "none";
     guessInput.disabled = false;
     guessButton.disabled = false;
     createButtons();
+    buildCandidateGrid();
     updateStats();
 }
 
@@ -650,6 +713,7 @@ function guess(){
     updateStats();
 
     buyCluesSection.style.display = "none";
+    candidateSection.style.display = "none";
 
     guessButton.style.display = "none";
     nextButton.style.display = "inline-block";
@@ -711,6 +775,7 @@ function buyClue(type){
         index++;
     }
 
+    updateCandidateGrid();
     updateStats();
 
     if (!canBuyAnyClue()) {

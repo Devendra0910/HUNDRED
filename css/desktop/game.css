@@ -315,4 +315,87 @@
 
     margin-bottom:18px;
 
+}
+
+/* ==========================
+   CANDIDATE GRID
+========================== */
+
+#candidateSection{
+
+    margin-bottom:20px;
+
+}
+
+.candidateHeader{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:14px;
+
+}
+
+.candidateHeader h2{
+
+    margin-bottom:0;
+
+}
+
+.candidateCount{
+
+    background:#eef2f7;
+    border-radius:999px;
+
+    padding:6px 14px;
+
+    font-size:14px;
+    font-weight:700;
+    color:#4a5568;
+
+}
+
+.candidateGrid{
+
+    display:grid;
+    grid-template-columns:repeat(10, 1fr);
+    gap:6px;
+
+    max-width:520px;
+    margin:0 auto;
+
+}
+
+.candidateCell{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    aspect-ratio:1;
+
+    border-radius:8px;
+
+    background:#2b6cff;
+    color:white;
+
+    font-size:14px;
+    font-weight:700;
+
+    transition:background .25s ease, color .25s ease, opacity .25s ease, transform .25s ease;
+
+}
+
+.candidateCell.eliminated{
+
+    background:#eef2f7;
+    color:#c2cad6;
+
+    opacity:.55;
+
+    transform:scale(.9);
+
+}
+
 

@@ -194,4 +194,36 @@
         font-size:20px;
     }
 
+    #candidateSection{
+
+        padding:14px;
+
+    }
+
+    .candidateHeader h2{
+
+        font-size:18px;
+
+    }
+
+    .candidateCount{
+
+        padding:4px 10px;
+        font-size:12px;
+
+    }
+
+    .candidateGrid{
+
+        gap:3px;
+
+    }
+
+    .candidateCell{
+
+        border-radius:5px;
+        font-size:11px;
+
+    }
+
 }
