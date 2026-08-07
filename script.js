@@ -91,6 +91,9 @@ const muteButton = document.getElementById("muteButton");
 let coins = LEVEL.startingCoins;
 let solved = 0;
 
+const GRID_COST = 3;
+let gridUnlocked = false;
+
 const clueCosts = {};
 
 for (const key of LEVEL.clues) {
@@ -151,6 +154,10 @@ const candidateCount = document.getElementById("candidateCount");
 const candidateToggle = document.getElementById("candidateToggle");
 
 candidateToggle.addEventListener("click", () => {
+    if (!gridUnlocked) {
+        buyCandidateGrid();
+        return;
+    }
     const expanded = candidateSection.classList.toggle("expanded");
     candidateToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
     localStorage.setItem("hundred_gridExpanded", String(expanded));
@@ -221,7 +228,31 @@ function isStillPossible(n){
     return true;
 }
 
+function buyCandidateGrid(){
+
+    if (gridUnlocked) return;
+
+    if (coins < GRID_COST) {
+        message.textContent = "Not enough coins!";
+        return;
+    }
+
+    SOUND.clueBuy();
+
+    coins -= GRID_COST;
+    gridUnlocked = true;
+
+    candidateSection.classList.remove("locked");
+    candidateSection.classList.add("expanded");
+    candidateToggle.setAttribute("aria-expanded", "true");
+
+    buildCandidateGrid();
+    updateStats();
+}
+
 function updateCandidateGrid(){
+
+    if (!gridUnlocked) return;
 
     if (currentNumber === null) return;
 
@@ -689,7 +720,14 @@ function nextRound(){
     guessInput.disabled = false;
     guessButton.disabled = false;
     createButtons();
-    buildCandidateGrid();
+
+    gridUnlocked = false;
+    candidateGrid.innerHTML = "";
+    candidateSection.classList.add("locked");
+    candidateSection.classList.remove("expanded");
+    candidateToggle.setAttribute("aria-expanded", "false");
+    candidateCount.textContent = `🔒 ${GRID_COST}💰`;
+
     updateStats();
 }
 

@@ -419,11 +419,18 @@
 /* Peek on hover, but only where hover actually exists (not touch). */
 @media (hover:hover) and (pointer:fine){
 
-    #candidateSection:hover .candidateGridWrap{
+    #candidateSection:not(.locked):hover .candidateGridWrap{
 
         grid-template-rows:1fr;
 
     }
+
+}
+
+#candidateSection.locked .candidateCount{
+
+    background:#FFD54F;
+    color:#6b4f00;
 
 }
 
