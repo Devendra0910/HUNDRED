@@ -21,6 +21,17 @@
   gtag('config', 'G-MS08BQXMRY');
 </script>
 
+<!-- PostHog -->
+<!-- TODO: replace YOUR_POSTHOG_PROJECT_API_KEY with your project's key (Project Settings > Project API Key). -->
+<!-- If your project isn't on US cloud, swap both us.i.posthog.com / us-assets.i.posthog.com for your region's host. -->
+<script src="https://us-assets.i.posthog.com/static/array.js"></script>
+<script>
+  posthog.init('YOUR_POSTHOG_PROJECT_API_KEY', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+  });
+</script>
+
 <link rel="stylesheet" href="css/style.css">
 
 </head>
