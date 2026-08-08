@@ -1,6 +1,9 @@
 let CURRENT_LEVEL = 1;
 let LEVEL = LEVELS[CURRENT_LEVEL];
 let levelStartTime = null;
+let questionStartTime = null;
+let levelCluesPurchasedCount = 0;
+let levelGridPurchasesCount = 0;
 
 const MAX_LEVEL = 13;
 
@@ -172,6 +175,12 @@ candidateToggle.addEventListener("click", () => {
     const expanded = candidateSection.classList.toggle("expanded");
     candidateToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
     localStorage.setItem("hundred_gridExpanded", String(expanded));
+
+    track("grid_toggled", {
+        level: CURRENT_LEVEL,
+        question: solved + 1,
+        expanded
+    });
 });
 
 if (localStorage.getItem("hundred_gridExpanded") === "true") {
@@ -182,12 +191,21 @@ if (localStorage.getItem("hundred_gridExpanded") === "true") {
 guessButton.addEventListener("click",guess);
 nextButton.addEventListener("click",nextRound);
 
-homeButton.addEventListener("click", showHome);
+homeButton.addEventListener("click", () => {
+    track("home_clicked", {
+        level: CURRENT_LEVEL,
+        solved: solved,
+        questions_total: LEVEL.questions,
+        coins_left: coins
+    });
+    showHome();
+});
 
 muteButton.textContent = SOUND.isMuted() ? "🔇" : "🔊";
 muteButton.addEventListener("click", () => {
     const muted = SOUND.toggleMuted();
     muteButton.textContent = muted ? "🔇" : "🔊";
+    track("mute_toggled", { muted });
 });
 
 
@@ -252,11 +270,15 @@ function buyCandidateGrid(){
 
     coins -= GRID_COST;
     gridUnlocked = true;
+    levelGridPurchasesCount++;
 
     track("grid_purchased", {
         level: CURRENT_LEVEL,
         question: solved + 1,
-        coins_left: coins
+        coins_left: coins,
+        time_since_question_start_seconds: questionStartTime !== null
+            ? Math.round((Date.now() - questionStartTime) / 1000)
+            : null
     });
 
     candidateSection.classList.remove("locked");
@@ -325,8 +347,13 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
     track(reason === "completed" ? "level_complete" : "level_failed", {
         level: CURRENT_LEVEL,
         solved: solved,
+        questions_total: LEVEL.questions,
         coins_left: coins,
-        duration_seconds: durationSeconds
+        starting_coins: LEVEL.startingCoins,
+        coins_spent: LEVEL.startingCoins - coins,
+        duration_seconds: durationSeconds,
+        clues_purchased_count: levelCluesPurchasedCount,
+        grid_purchases_count: levelGridPurchasesCount
     });
 
     buyCluesSection.style.display = "none";
@@ -488,11 +515,15 @@ function endGame(reason = "completed", answer = null, userGuess = null) {
     `;
 
     }
-    document.getElementById("restartButton").addEventListener("click", () => {location.reload()});
+    document.getElementById("restartButton").addEventListener("click", () => {
+        track("restart_clicked", { level: CURRENT_LEVEL, reason });
+        location.reload();
+    });
 
     const nextLevelButton = document.getElementById("nextLevelButton");
     if (nextLevelButton) {
         nextLevelButton.addEventListener("click", () => {
+            track("next_level_clicked", { level: CURRENT_LEVEL, next_level: CURRENT_LEVEL + 1 });
             startLevel(CURRENT_LEVEL + 1);
         });
     }
@@ -696,8 +727,15 @@ function startLevel(levelNumber) {
     CURRENT_LEVEL = levelNumber;
     LEVEL = LEVELS[levelNumber];
     levelStartTime = Date.now();
+    levelCluesPurchasedCount = 0;
+    levelGridPurchasesCount = 0;
 
-    track("level_start", { level: levelNumber });
+    track("level_start", {
+        level: levelNumber,
+        starting_coins: LEVEL.startingCoins,
+        questions_total: LEVEL.questions,
+        is_replay: loadBestScore(levelNumber) !== null
+    });
 
     levelTitle.textContent = `Level ${CURRENT_LEVEL}`;
 
@@ -741,6 +779,7 @@ function nextRound(){
         return;
     }
     currentNumber=deck.shift();
+    questionStartTime = Date.now();
     purchasedClues={};
     //revealed.innerHTML="No clues purchased.";
     message.textContent="";
@@ -782,6 +821,17 @@ function guess(){
         message.textContent=
             "✅ Correct! It was "+currentNumber;
 
+        track("guess_correct", {
+            level: CURRENT_LEVEL,
+            question: solved,
+            coins_left: coins,
+            clues_purchased_this_question: Object.keys(purchasedClues).length,
+            grid_used_this_question: gridUnlocked,
+            duration_seconds: questionStartTime !== null
+                ? Math.round((Date.now() - questionStartTime) / 1000)
+                : null
+        });
+
        if (solved === LEVEL.questions) {
 
           updateStats();
@@ -802,7 +852,12 @@ function guess(){
           question: solved + 1,
           guess: value,
           answer: currentNumber,
-          coins_left: coins
+          coins_left: coins,
+          clues_purchased_this_question: Object.keys(purchasedClues).length,
+          grid_used_this_question: gridUnlocked,
+          duration_seconds: questionStartTime !== null
+              ? Math.round((Date.now() - questionStartTime) / 1000)
+              : null
       });
 
       //message.innerHTML = `❌ Wrong! The correct answer was <b>${currentNumber}</b>.`;
@@ -863,13 +918,17 @@ function buyClue(type){
 
     // Mark purchased
     purchasedClues[type] = true;
+    levelCluesPurchasedCount++;
 
     track("clue_purchased", {
         level: CURRENT_LEVEL,
         question: solved + 1,
         clue: type,
         cost: cluePaid,
-        coins_left: coins
+        coins_left: coins,
+        time_since_question_start_seconds: questionStartTime !== null
+            ? Math.round((Date.now() - questionStartTime) / 1000)
+            : null
     });
 
     // Refresh buttons to show updated costs
